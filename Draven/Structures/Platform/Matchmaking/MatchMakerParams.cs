@@ -11,25 +11,25 @@ namespace Draven.Structures
     [SerializedName("com.riotgames.platform.matchmaking.MatchMakerParams")]
     class MatchMakerParams
     {
+        [SerializedName("lastMaestroMessage")]
+        public object LastMaestroMessage { get; set; }
+
+        [SerializedName("teamId")]
+        public object TeamId { get; set; }
+
+        [SerializedName("languages")]
+        public object Languages { get; set; }
+
         [SerializedName("botDifficulty")]
         public String BotDifficulty { get; set; }
 
-        [SerializedName("queueIDs")]
-        public List<int> QueueIDs { get; set; }
-
-        [SerializedName("invitationID")]
-        public Object InvitationID { get; set; }
-
-        [SerializedName("lastMaestroMessage")]
-        public Object LastMaestroMessage { get; set; }
-
-        [SerializedName("teamID")]
-        public Object TeamID { get; set; }
-
         [SerializedName("team")]
-        public Object Team { get; set; }
+        public object Team { get; set; }
 
-        [SerializedName("languages")]
-        public Object Languages { get; set; }
+        [SerializedName("queueIds")]
+        public Int32[] QueueIds { get; set; }
+
+        [SerializedName("invitationId")]
+        public object InvitationId { get; set; }
     }
 }
