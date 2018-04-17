@@ -1,5 +1,6 @@
 ﻿using Draven.Structures;
 using Messages;
+using RtmpSharp.IO;
 using RtmpSharp.IO.AMF3;
 using RtmpSharp.Messaging;
 using System;
@@ -11,18 +12,21 @@ namespace Draven.Messages.MatchmakerService
     {
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)
         {
+            MatchMakerParams obj2 = e.Body as MatchMakerParams;
+            foreach (var obj in obj2.QueueIDs)
+                Console.WriteLine(obj);
+
             SearchingForMatchNotification notification = new SearchingForMatchNotification
             {
-                PlayerJoinFailures = new ArrayCollection
+                JoinedQueues = new ArrayCollection
                 {
-                    new QueueDisabled
+                    new QueueInfo
                     {
-                        Message = "QUEUE_DISABLED",
-                        QueueId = 1
+                        WaitTime = 5000,
+                        QueueID = 65,
+                        QueueLength = 5000
                     }
-                },
-                GhostGameSummoners = new ArrayCollection(),
-                JoinedQueues = new ArrayCollection()
+                }
             };
 
             e.ReturnRequired = true;

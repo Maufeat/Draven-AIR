@@ -128,6 +128,8 @@
     <Compile Include="Structures\Platform\Login\Matchmaking\QueueDisabled.cs" />
     <Compile Include="Structures\Platform\Login\Matchmaking\SearchingForMatchNotification.cs" />
     <Compile Include="Structures\Platform\Login\Session.cs" />
+    <Compile Include="Structures\Platform\Matchmaking\MatchMakerParams.cs" />
+    <Compile Include="Structures\Platform\Matchmaking\QueueInfo.cs" />
     <Compile Include="Structures\Platform\Messaging\StoreAccountBalanceNotification.cs" />
     <Compile Include="Structures\Platform\Reroll\Pojo\PointSummary.cs" />
     <Compile Include="Structures\Platform\ServiceProxy\Dispatch\LcdsServiceProxyResponse.cs" />

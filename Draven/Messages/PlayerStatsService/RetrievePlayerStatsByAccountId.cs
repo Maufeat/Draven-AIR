@@ -10,8 +10,8 @@ namespace Draven.Messages.PlayerStatsService
     {
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)
         {
-            object[] body = e.Body as object[];
             SummonerClient summonerSender = sender as SummonerClient;
+            object[] body = e.Body as object[];
             int accId = Convert.ToInt32(body[0]);
             int unknown = Convert.ToInt32(body[1]);
 
