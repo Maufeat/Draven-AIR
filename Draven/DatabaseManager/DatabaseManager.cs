@@ -70,8 +70,7 @@ namespace Draven
             {
                 //Download the latest mastery daata
                 string MasteryData = client.DownloadString("http://ddragon.leagueoflegends.com/cdn/4.20.2/data/en_US/mastery.json");
-
-                #region Mastery loading
+                
                 Masteries mData = JsonConvert.DeserializeObject<Masteries>(MasteryData);
                 TalentTree = new ArrayCollection();
 
@@ -134,7 +133,6 @@ namespace Draven
 
                     TalentTree.Add(group);
                 }
-                #endregion
 
                 #region Rune Loading
                 RuneTree = new ArrayCollection();
@@ -210,6 +208,37 @@ namespace Draven
                 #endregion
             }
            
+        }
+
+
+        public class ProfileJsonTree
+        {
+            public string type { get; set; }
+            public string version { get; set; }
+            public Dictionary<string, ProfileIconTree> data { get; set; }
+        }
+        public class ProfileIconTree
+        {
+            public int id { get; set; }
+        }
+
+        public static List<int> ProfileIcons = new List<int>();
+
+        public static void InitProfileIcons()
+        {
+            using (WebClient client = new WebClient())
+            {
+                Console.WriteLine("[LOG] Initialize Profile Icons");
+
+                string ProfileData = client.DownloadString("http://ddragon.leagueoflegends.com/cdn/4.20.2/data/en_US/profileicon.json");
+
+                ProfileJsonTree mData = JsonConvert.DeserializeObject<ProfileJsonTree>(ProfileData);
+
+                foreach (var iconData in mData.data)
+                {
+                        ProfileIcons.Add(iconData.Value.id);
+                }
+            }
         }
 
         public static Dictionary<string, string> getAccountData(string user, string pass)

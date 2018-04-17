@@ -29,7 +29,7 @@ namespace Draven
         public static string host = "127.0.0.1";
         public static string user = "root";
         public static string pass = "";
-        public static string database = "";
+        public static string database = "lol";
 
         //Server
         private static AuthServer _auth;
@@ -59,7 +59,8 @@ namespace Draven
             }
 
             DatabaseManager.InitMasteryAndRuneTree();
-            
+            DatabaseManager.InitProfileIcons();
+
             //Create the Authentication Server to handle login requests and client page
             _auth = new AuthServer(AuthServer.HandleWebServ, AuthLocations);
 
