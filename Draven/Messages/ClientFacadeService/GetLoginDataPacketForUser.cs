@@ -51,8 +51,46 @@ namespace Draven.Messages.ClientFacadeService
                 MaxPracticeGameSize = 5,
                 SummonerCatalog = new SummonerCatalog
                 {
-                    TalentTree = DatabaseManager.TalentTree,
-                    SpellBookConfig = DatabaseManager.RuneTree
+                    TalentTree = new ArrayCollection
+                    {
+                        new TalentGroup
+                        {
+                            Index = 0,
+                            Name = "test",
+                            TalentRows = new ArrayCollection(),
+                            TltGroupId = 1,
+                            Version = 4
+                        },
+                        new TalentGroup
+                        {
+                            Index = 1,
+                            Name = "test2",
+                            TalentRows = new ArrayCollection(),
+                            TltGroupId = 2,
+                            Version = 4
+                        },
+                        new TalentGroup
+                        {
+                            Index = 2,
+                            Name = "test3",
+                            TalentRows = new ArrayCollection(),
+                            TltGroupId = 3,
+                            Version = 4
+                        }
+                    },
+                    SpellBookConfig = new ArrayCollection
+                    {
+                        new RuneSlot
+                        {
+                            Id = 10001,
+                            MinLevel = 30,
+                            RuneType = new RuneType
+                            {
+                                Id = 3,
+                                Name = "red"
+                            }
+                        }
+                    },
                 },
                 IpBalance = Convert.ToInt32(summonerSender._IP),
                 ReconnectInfo = null,

@@ -69,7 +69,7 @@ namespace Draven.Messages.SummonerService
                     HelpFlag = false,
                     SumId = summonerSender._sumId,
                     ProfileIconId = Convert.ToInt32(summonerSender._sumIcon),
-                    DisplayEloQuestionaire = true,
+                    DisplayEloQuestionaire = false,
                     LastGameDate = new DateTime(2016, 08, 11, 12, 00, 00),
                     RevisionDate = new DateTime(2016, 08, 11, 12, 00, 00),
                     AdvancedTutorialFlag = false,

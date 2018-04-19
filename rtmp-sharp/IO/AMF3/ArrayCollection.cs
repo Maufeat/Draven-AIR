@@ -22,6 +22,11 @@ namespace RtmpSharp.IO.AMF3
         {
             output.WriteObject(this.ToArray());
         }
+
+        public static implicit operator ArrayCollection(Dictionary<string, object> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     public class ArrayCollectionConverter : TypeConverter

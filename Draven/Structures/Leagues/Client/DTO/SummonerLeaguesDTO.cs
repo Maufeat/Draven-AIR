@@ -1,4 +1,5 @@
-﻿using RtmpSharp.IO;
+﻿using Newtonsoft.Json;
+using RtmpSharp.IO;
 using RtmpSharp.IO.AMF3;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,11 @@ using System.Threading.Tasks;
 namespace Draven.Structures
 {
     [Serializable]
-    [SerializedName("com.riotgames.leagues.client.dto.SummonerLeaguesDTO")]
+    [SerializedName("com.riotgames.platform.leagues.client.dto.SummonerLeaguesDTO")]
     class SummonerLeaguesDTO
     {
+        [JsonProperty("summonerLeagues")]
         [SerializedName("summonerLeagues")]
-        public ArrayCollection SummonerLeagues { get; set; }
+        public List<LeagueListDTO> SummonerLeagues { get; set; }
     }
 }

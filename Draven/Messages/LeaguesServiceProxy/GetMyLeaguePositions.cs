@@ -39,7 +39,12 @@ namespace Draven.Messages.LeaguesServiceProxy
                                     TimeUntilDecay = -1,
                                     DisplayDecayWarning = false,
                                     PlayerOrteamName = "Maufeat",
-                                    Wins = 999
+                                    Wins = 999,
+                                    ApexDaysUntilDecay = 0,
+                                    LeaguePointsDelta = 9999,
+                                    PlayStyle = new ArrayCollection(),
+                                    PlayStyleReminingWins = 1,
+                                    TimeLastDecayMessageShown = 0
                                  }
                              }
                          };

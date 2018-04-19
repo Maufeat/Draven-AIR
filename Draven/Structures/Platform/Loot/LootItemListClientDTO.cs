@@ -1,4 +1,5 @@
-﻿using RtmpSharp.IO;
+﻿using Newtonsoft.Json;
+using RtmpSharp.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +12,10 @@ namespace Draven.Structures
     [SerializedName("com.riotgames.loot.dto.LootItemListClientDTO")]
     public class LootItemListClientDTO
     {
+        [JsonProperty("lootItems")]
         [SerializedName("lootItems")]
         public List<LootItemDTO> LootItems { get; set; }
+        [JsonProperty("lastUpdate")]
         [SerializedName("lastUpdate")]
         public Double LastUpdate{ get; set; }
     }

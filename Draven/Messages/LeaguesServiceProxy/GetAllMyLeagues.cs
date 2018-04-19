@@ -4,6 +4,7 @@ using Messages;
 using RtmpSharp.IO.AMF3;
 using RtmpSharp.Messaging;
 using System;
+using System.Collections.Generic;
 
 namespace Draven.Messages.LeaguesServiceProxy
 {
@@ -14,7 +15,7 @@ namespace Draven.Messages.LeaguesServiceProxy
             e.ReturnRequired = true;
             e.Data = new SummonerLeaguesDTO()
             {
-                SummonerLeagues = new ArrayCollection()
+                SummonerLeagues = new List<LeagueListDTO>()
                 {
                     new LeagueListDTO()
                     {
@@ -22,10 +23,9 @@ namespace Draven.Messages.LeaguesServiceProxy
                         Name = "Sahin The Master",
                         Tier = "CHALLENGER",
                         RequestorsRank = "null",
-                        Entries = new ArrayCollection()
+                        Entries = new List<LeagueItemDTO>
                         {
-                            new LeagueItemDTO()
-                            {
+                            new LeagueItemDTO{
                                 PreviousDayLeaguePosition = 1,
                                 SeasonEndTier = "CHALLENGER",
                                 SeasonEndRank = "I",
@@ -49,7 +49,12 @@ namespace Draven.Messages.LeaguesServiceProxy
                                 TimeUntilDecay = -1,
                                 DisplayDecayWarning = false,
                                 PlayerOrteamName = "Maufeat",
-                                Wins = 999
+                                Wins = 999,
+                                ApexDaysUntilDecay = 0,
+                                LeaguePointsDelta = 9999,
+                                PlayStyle = new ArrayCollection(),
+                                PlayStyleReminingWins = 1,
+                                TimeLastDecayMessageShown = 0
                             }
                         },
                         NextApexUpdate = 7430971,

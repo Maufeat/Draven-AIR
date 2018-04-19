@@ -20,11 +20,17 @@ namespace Draven.Structures
         [SerializedName("messageId")]
         public String MessageId { get; set; }
 
-        [SerializedName("MethodName")]
+        [SerializedName("methodName")]
         public String MethodName { get; set; }
 
-        [SerializedName("ServiceName")]
+        [SerializedName("serviceName")]
         public String ServiceName { get; set; }
+
+        [SerializedName("compressedPayload")]
+        public Boolean CompressedPayload { get; set; }
+
+        [SerializedName("decompressedPayload")]
+        public dynamic DecompressedPayload { get; set; }
 
     }
 }

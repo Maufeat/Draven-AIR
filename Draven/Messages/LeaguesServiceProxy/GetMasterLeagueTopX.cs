@@ -24,23 +24,23 @@ namespace Draven.Messages.LeaguesServiceProxy
             switch (creds)
             {
                 case "RANKED_SOLO_5x5":
-                    rData = new LeagueListDTO()
+                    rData =
+                    new LeagueListDTO()
                     {
                         Queue = "RANKED_SOLO_5x5",
                         Name = "Sahin The Master",
-                        Tier = "MASTER",
+                        Tier = "CHALLENGER",
                         RequestorsRank = "null",
-                        Entries = new ArrayCollection()
+                        Entries = new List<LeagueItemDTO>
                         {
-                            new LeagueItemDTO()
-                            {
+                            new LeagueItemDTO{
                                 PreviousDayLeaguePosition = 1,
-                                SeasonEndTier = "MASTER",
+                                SeasonEndTier = "CHALLENGER",
                                 SeasonEndRank = "I",
                                 HotStreak = true,
                                 LeagueName = "Sahin The Master",
                                 MiniSeries = null,
-                                Tier = "MASTER",
+                                Tier = "CHALLENGER",
                                 FreshBlood = true,
                                 LastPlayed = 0,
                                 TimeUntilInactivityStatusChanges = 0,
@@ -57,7 +57,12 @@ namespace Draven.Messages.LeaguesServiceProxy
                                 TimeUntilDecay = -1,
                                 DisplayDecayWarning = false,
                                 PlayerOrteamName = "Maufeat",
-                                Wins = 999
+                                Wins = 999,
+                                ApexDaysUntilDecay = 0,
+                                LeaguePointsDelta = 9999,
+                                PlayStyle = new ArrayCollection(),
+                                PlayStyleReminingWins = 1,
+                                TimeLastDecayMessageShown = 0
                             }
                         },
                         NextApexUpdate = 7430971,
@@ -66,88 +71,10 @@ namespace Draven.Messages.LeaguesServiceProxy
                     };
                     break;
                 case "RANKED_TEAM_3x3":
-                    rData = new LeagueListDTO()
-                    {
-                        Queue = "RANKED_TEAM_3x3",
-                        Name = "Riven\'s Zealots",
-                        Tier = "MASTER",
-                        RequestorsRank = "null",
-                        Entries = new ArrayCollection()
-                        {
-                            new LeagueItemDTO()
-                            {
-                                PreviousDayLeaguePosition = 1,
-                                SeasonEndTier = "MASTER",
-                                SeasonEndRank = "I",
-                                HotStreak = true,
-                                LeagueName = "Riven\'s Zealots",
-                                MiniSeries = null,
-                                Tier = "MASTER",
-                                FreshBlood = true,
-                                LastPlayed = 0,
-                                TimeUntilInactivityStatusChanges = 0,
-                                InactivityStatus = "OK",
-                                PlayerOrTeamId = "1",
-                                LeaguePoints = 9999,
-                                DemotionWarning = 0,
-                                Inactive = false,
-                                SeasonEndApexPosition = 1,
-                                Rank = "I",
-                                Veteran = true,
-                                QueueType = "RANKED_TEAM_3x3",
-                                Losses = 0,
-                                TimeUntilDecay = -1,
-                                DisplayDecayWarning = false,
-                                PlayerOrteamName = "Magische Mießmuschel",
-                                Wins = 999
-                            }
-                        },
-                        NextApexUpdate = 7430971,
-                        MaxLeagueSize = 50,
-                        RequestorsName = null
-                    };
+                    rData = null;
                     break;
                 case "RANKED_TEAM_5x5":
-                    rData = new LeagueListDTO()
-                    {
-                        Queue = "RANKED_TEAM_5x5",
-                        Name = "Talon\'s Warriors",
-                        Tier = "MASTER",
-                        RequestorsRank = "null",
-                        Entries = new ArrayCollection()
-                        {
-                            new LeagueItemDTO()
-                            {
-                                PreviousDayLeaguePosition = 1,
-                                SeasonEndTier = "CHALLENGER",
-                                SeasonEndRank = "I",
-                                HotStreak = true,
-                                LeagueName = "Talon\'s Warriors",
-                                MiniSeries = null,
-                                Tier = "MASTER",
-                                FreshBlood = true,
-                                LastPlayed = 0,
-                                TimeUntilInactivityStatusChanges = 0,
-                                InactivityStatus = "OK",
-                                PlayerOrTeamId = "1",
-                                LeaguePoints = 9999,
-                                DemotionWarning = 0,
-                                Inactive = false,
-                                SeasonEndApexPosition = 1,
-                                Rank = "I",
-                                Veteran = true,
-                                QueueType = "RANKED_TEAM_5x5",
-                                Losses = 0,
-                                TimeUntilDecay = -1,
-                                DisplayDecayWarning = false,
-                                PlayerOrteamName = "Magische Mießmuschel 5x5",
-                                Wins = 999
-                            }
-                        },
-                        NextApexUpdate = 7430971,
-                        MaxLeagueSize = 50,
-                        RequestorsName = null
-                    };
+                    rData = null;
                     break;
                 default:
                     rData = null;

@@ -17,5 +17,7 @@ namespace Draven.Structures
         public String Name { get; set; }
         [SerializedName("tltGroupId")]
         public Int32 TltGroupId { get; set; }
+        [SerializedName("version")]
+        public Int32 Version { get; set; }
     }
 }
