@@ -9,8 +9,6 @@ namespace Draven.Structures
     [SerializedName("com.riotgames.platform.summoner.SummonerCatalog")]
     public class SummonerCatalog
     {
-        [SerializedName("items")]
-        public object Items { get; set; }
         [SerializedName("talentTree")]
         public ArrayCollection TalentTree { get; set; }
         [SerializedName("spellBookConfig")]

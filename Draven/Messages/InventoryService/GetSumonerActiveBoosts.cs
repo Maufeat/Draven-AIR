@@ -1,6 +1,8 @@
-﻿using Draven.Structures;
+﻿using Draven.ServerModels;
+using Draven.Structures;
 using Messages;
 using RtmpSharp.Messaging;
+using System;
 
 namespace Draven.Messages.InventoryService
 {
@@ -9,15 +11,15 @@ namespace Draven.Messages.InventoryService
     {
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)
         {
+            SummonerClient summonerSender = sender as SummonerClient;
+
             SummonerActiveBoostsDTO activeBoosts = new SummonerActiveBoostsDTO
             {
+                SummonerID = Convert.ToInt32(summonerSender._sumId),
                 IPBoostEndDate = 0.0,
                 XPBoostEndDate = 0.0,
-                IPBoostPerWinCount = 0,
-                IPLoyaltyBoost = 0,
-                SummonerID = int.MaxValue - 1,
-                XPBoostPerWinCount = 0,
-                XPLoyaltyBoost = 0
+                IPBoostPerWinCount = 5,
+                XPBoostPerWinCount = 5,
             };
 
             e.ReturnRequired = true;

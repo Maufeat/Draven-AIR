@@ -9,13 +9,11 @@ namespace Draven.Structures
     [SerializedName("com.riotgames.platform.statistics.ChampionStatInfo")]
     class ChampionStatInfo
     {
-        [SerializedName("totalGammesPlayed")]
-        public Int32 TotalGammesPlayed { get; set; }
-        [SerializedName("accountId")]
-        public Int32 AccountId { get; set; }
-        [SerializedName("stats")]
-        public ArrayCollection Stats { get; set; }
         [SerializedName("championId")]
         public Int32 ChampionId { get; set; }
+        [SerializedName("stats")]
+        public ArrayCollection Stats { get; set; }
+        [SerializedName("totalGammesPlayed")]
+        public Int32 TotalGammesPlayed { get; set; }
     }
 }

@@ -7,39 +7,31 @@ namespace Draven.Structures
 {
     [Serializable]
     [SerializedName("com.riotgames.platform.summoner.Summoner")]
-    public class Summoner
+    public class Summoner : BaseSummoner
     {
-        [SerializedName("seasonTwoTier")]
-        public String SeasonTwoTier { get; set; }
-        [SerializedName("internalName")]
-        public String InternalName { get; set; }
-        [SerializedName("acctId")]
-        public Double AcctId { get; set; }
-        [SerializedName("helpFlag")]
-        public Boolean HelpFlag { get; set; }
         [SerializedName("sumId")]
         public Double SumId { get; set; }
-        [SerializedName("profileIconId")]
-        public Int32 ProfileIconId { get; set; }
-        [SerializedName("displayEloQuestionaire")]
-        public Boolean DisplayEloQuestionaire { get; set; }
-        [SerializedName("lastGameDate")]
-        public DateTime LastGameDate { get; set; }
-        [SerializedName("advancedTutorialFlag")]
-        public Boolean AdvancedTutorialFlag { get; set; }
-        [SerializedName("revisionDate")]
-        public DateTime RevisionDate { get; set; }
         [SerializedName("revisionId")]
         public Double RevisionId { get; set; }
-        [SerializedName("seasonOneTier")]
-        public String SeasonOneTier { get; set; }
-        [SerializedName("name")]
-        public String Name { get; set; }
-        [SerializedName("nameChangeFlag")]
-        public Boolean NameChangeFlag { get; set; }
-        [SerializedName("tutorialFlag")]
-        public Boolean TutorialFlag { get; set; }
+        [SerializedName("revisionDate")]
+        public DateTime RevisionDate { get; set; }
+        [SerializedName("lastGameDate")]
+        public DateTime LastGameDate { get; set; }
         [SerializedName("socialNetworkUserIds")]
         public ArrayCollection SocialNetworkUserIds { get; set; }
+        [SerializedName("previousSeasonHighestTier")]
+        public String PreviousSeasonHighestTier { get; set; }
+        [SerializedName("previousSeasonHighestTeamReward")]
+        public Int32 PreviousSeasonHighestTeamReward { get; set; }
+        [SerializedName("tutorialFlag")]
+        public Boolean TutorialFlag { get; set; }
+        [SerializedName("helpFlag")]
+        public Boolean HelpFlag { get; set; }
+        [SerializedName("displayEloQuestionaire")]
+        public Boolean DisplayEloQuestionaire { get; set; }
+        [SerializedName("nameChangeFlag")]
+        public Boolean NameChangeFlag { get; set; }
+        [SerializedName("advancedTutorialFlag")]
+        public Boolean AdvancedTutorialFlag { get; set; }
     }
 }

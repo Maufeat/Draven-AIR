@@ -28,6 +28,8 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -49,17 +51,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Mono.Security">
-      <HintPath>C:\Users\Sahin\Desktop\Draven\Draven\Draven\bin\Debug\Mono.Security.dll</HintPath>
+    <Reference Include="Mono.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Security.3.2.3.0\lib\net45\Mono.Security.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data">
-      <HintPath>C:\Users\Sahin\Desktop\Draven\Draven\Draven\bin\Debug\MySql.Data.dll</HintPath>
+    <Reference Include="MySql.Data, Version=6.10.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>..\packages\MySql.Data.6.10.6\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>C:\Users\Sahin\Desktop\Draven\Draven\Draven\bin\Debug\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
@@ -111,6 +122,10 @@
     <Compile Include="Structures\Leagues\Client\DTO\SummonerLeaguesDTO.cs" />
     <Compile Include="Structures\Leagues\Pojo\LeagueItemDTO.cs" />
     <Compile Include="Structures\Leagues\Pojo\LeagueListDTO.cs" />
+    <Compile Include="Structures\Platform\Loot\QueryResultDTO.cs" />
+    <Compile Include="Structures\Platform\Loot\LootItemClientDTO.cs" />
+    <Compile Include="Structures\Platform\Loot\PlayerLootDefinitionsDTO.cs" />
+    <Compile Include="Structures\Platform\Loot\PlayerLootDTO.cs" />
     <Compile Include="Structures\Platform\Account\AccountSummary.cs" />
     <Compile Include="Structures\Platform\Broadcast\BroadcastNotification.cs" />
     <Compile Include="Structures\Platform\Catalog\ChampionDTO.cs" />
@@ -128,12 +143,18 @@
     <Compile Include="Structures\Platform\Login\Matchmaking\QueueDisabled.cs" />
     <Compile Include="Structures\Platform\Login\Matchmaking\SearchingForMatchNotification.cs" />
     <Compile Include="Structures\Platform\Login\Session.cs" />
+    <Compile Include="Structures\Platform\Loot\LootItemListClientDTO.cs" />
+    <Compile Include="Structures\Platform\Loot\RecipeOutputDTO.cs" />
+    <Compile Include="Structures\Platform\Loot\RecipeSlotDTO.cs" />
+    <Compile Include="Structures\Platform\Loot\RecipeDTO.cs" />
+    <Compile Include="Structures\Platform\Loot\RecipeListDTO.cs" />
     <Compile Include="Structures\Platform\Matchmaking\MatchMakerParams.cs" />
     <Compile Include="Structures\Platform\Matchmaking\QueueInfo.cs" />
     <Compile Include="Structures\Platform\Messaging\StoreAccountBalanceNotification.cs" />
     <Compile Include="Structures\Platform\Reroll\Pojo\PointSummary.cs" />
     <Compile Include="Structures\Platform\ServiceProxy\Dispatch\LcdsServiceProxyResponse.cs" />
     <Compile Include="Structures\Platform\Statistics\ChampionStatInfo.cs" />
+    <Compile Include="Structures\Platform\Statistics\PlayerChampionStats.cs" />
     <Compile Include="Structures\Platform\Statistics\PlayerLifetimeStats.cs" />
     <Compile Include="Structures\Platform\Statistics\PlayerStats.cs" />
     <Compile Include="Structures\Platform\Statistics\PlayerStatSummaries.cs" />
@@ -141,6 +162,7 @@
     <Compile Include="Structures\Platform\Statistics\SummaryAggStat.cs" />
     <Compile Include="Structures\Platform\Statistics\SummaryAggStats.cs" />
     <Compile Include="Structures\Platform\Summoner\AllSummonerData.cs" />
+    <Compile Include="Structures\Platform\Summoner\BaseSummoner.cs" />
     <Compile Include="Structures\Platform\Summoner\MasteryBookDTO.cs" />
     <Compile Include="Structures\Platform\Summoner\MasteryPageDTO.cs" />
     <Compile Include="Structures\Platform\Summoner\SlotEntry.cs" />
@@ -166,6 +188,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

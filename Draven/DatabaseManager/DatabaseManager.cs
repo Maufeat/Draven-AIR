@@ -50,7 +50,7 @@ namespace Draven
 
             public string version { get; set; }
 
-            public Dictionary<int, MasteryData> data { get; set; }
+            public Dictionary<string, MasteryData> data { get; set; }
 
             public Dictionary<string, List<List<MasteryLite>>> tree { get; set; }
         }
@@ -69,7 +69,7 @@ namespace Draven
             using (WebClient client = new WebClient())
             {
                 //Download the latest mastery daata
-                string MasteryData = client.DownloadString("http://ddragon.leagueoflegends.com/cdn/4.20.2/data/en_US/mastery.json");
+                string MasteryData = client.DownloadString("http://ddragon.leagueoflegends.com/cdn/7.12.1/data/en_US/mastery.json");
                 
                 Masteries mData = JsonConvert.DeserializeObject<Masteries>(MasteryData);
                 TalentTree = new ArrayCollection();
@@ -94,7 +94,7 @@ namespace Draven
                             if (masteryList[j] == null)
                                 continue;
 
-                            var data = mData.data[Convert.ToInt32(masteryList[j].masteryId)];
+                            var data = mData.data[masteryList[j].masteryId];
                             Talent t = new Talent
                             {
                                 Index = j,
@@ -230,7 +230,7 @@ namespace Draven
             {
                 Console.WriteLine("[LOG] Initialize Profile Icons");
 
-                string ProfileData = client.DownloadString("http://ddragon.leagueoflegends.com/cdn/4.20.2/data/en_US/profileicon.json");
+                string ProfileData = client.DownloadString("http://ddragon.leagueoflegends.com/cdn/7.12.1/data/en_US/profileicon.json");
 
                 ProfileJsonTree mData = JsonConvert.DeserializeObject<ProfileJsonTree>(ProfileData);
 

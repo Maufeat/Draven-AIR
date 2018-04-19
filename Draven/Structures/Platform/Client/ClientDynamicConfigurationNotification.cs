@@ -8,10 +8,10 @@ namespace Draven.Structures
     [SerializedName("com.riotgames.platform.client.dynamic.configuration.ClientDynamicConfigurationNotification")]
     public class ClientDynamicConfigurationNotification
     {
-        [SerializedName("configs")]
-        public Dictionary<string, object> Config { get; set; }
-
         [SerializedName("delta")]
         public Boolean Delta { get; set; }
+
+        [SerializedName("configs")]
+        public String Config { get; set; }
     }
 }

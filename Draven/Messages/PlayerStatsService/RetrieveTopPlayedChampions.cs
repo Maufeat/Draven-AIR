@@ -25,30 +25,45 @@ namespace Draven.Messages.PlayerStatsService
                 new ChampionStatInfo()
                 {
                     TotalGammesPlayed = 17,
-                    AccountId = Convert.ToInt32(summonerSender._session.Summary.AccountId),
                     Stats = new ArrayCollection()
                     {
-
+                        new PlayerChampionStats
+                        {
+                            Owned = true,
+                            Stats = new ArrayCollection() {},
+                            Wins = 1337,
+                            TotalGamesPlayed = 9999
+                        }
                     },
                     ChampionId = 17
                 },
                 new ChampionStatInfo()
                 {
                     TotalGammesPlayed = 17,
-                    AccountId = Convert.ToInt32(summonerSender._session.Summary.AccountId),
                     Stats = new ArrayCollection()
                     {
-
+                        new PlayerChampionStats
+                        {
+                            Owned = true,
+                            Stats = new ArrayCollection() {},
+                            Wins = 1337,
+                            TotalGamesPlayed = 9999
+                        }
                     },
                     ChampionId = 17
                 },
                 new ChampionStatInfo()
                 {
                     TotalGammesPlayed = 17,
-                    AccountId = Convert.ToInt32(summonerSender._session.Summary.AccountId),
                     Stats = new ArrayCollection()
                     {
-
+                        new PlayerChampionStats
+                        {
+                            Owned = true,
+                            Stats = new ArrayCollection() {},
+                            Wins = 1337,
+                            TotalGamesPlayed = 9999
+                        }
                     },
                     ChampionId = 17
                 }

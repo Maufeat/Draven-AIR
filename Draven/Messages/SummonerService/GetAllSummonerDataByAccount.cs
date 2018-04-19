@@ -18,13 +18,11 @@ namespace Draven.Messages.SummonerService
             object[] body = e.Body as object[];
             SummonerClient summonerSender = sender as SummonerClient;
             int creds = Convert.ToInt32(body[0]);
-            Console.WriteLine("Tries to get AllSummonerDataByAccount from ID: " + creds);
 
             AllSummonerData allSD = new AllSummonerData()
             {
                 SpellBook = new SpellBookDTO()
                 {
-                    BookPagesJson = "",
                     BookPages = new ArrayCollection
                                 {
                                     new SpellBookPageDTO
@@ -65,8 +63,9 @@ namespace Draven.Messages.SummonerService
                 Summoner = new Summoner()
                 {
                     InternalName = summonerSender._session.Summary.InternalName,
-                    SeasonTwoTier = "CHALLENGER",
-                    AcctId = summonerSender._session.Summary.AccountId,
+                    PreviousSeasonHighestTier = "CHALLENGER",
+                    PreviousSeasonHighestTeamReward = 5,
+                    AcctId = summonerSender._accId,
                     HelpFlag = false,
                     SumId = summonerSender._sumId,
                     ProfileIconId = Convert.ToInt32(summonerSender._sumIcon),
@@ -74,35 +73,25 @@ namespace Draven.Messages.SummonerService
                     LastGameDate = new DateTime(2016, 08, 11, 12, 00, 00),
                     RevisionDate = new DateTime(2016, 08, 11, 12, 00, 00),
                     AdvancedTutorialFlag = false,
-                    RevisionId = 0,
+                    RevisionId = 1,
                     Name = summonerSender._session.Summary.SummonerName,
                     NameChangeFlag = false,
-                    TutorialFlag = false
+                    TutorialFlag = false,
                 },
-                MasteryBook = new MasteryBookDTO()
+                SummonerLevel = new SummonerLevel
                 {
-                    BookPagesJson = "",
-                    BookPages = new ArrayCollection(),
-                    DateString = "Tue Dec 02 03:23:04 UTC 2014",
-                    SummonerId = summonerSender._sumId
+                    ExpTierMod = 1.0,
+                    SummonerTier = 5.0,
+                    InfTierMod = 1.0,
+                    ExpToNextLevel = 32651,
+                    Level = 30.0
                 },
-                SummonerLevelAndPoints = new SummonerLevelAndPoints()
+                SummonerLevelAndPoints = new SummonerLevelAndPoints
                 {
-                    InfPoints = 69974,
-                    ExpPoints = 44,
-                    SummonerLevel = summonerSender._sumLvl,
-                    SummonerId = summonerSender._sumId
-                },
-                SummonerLevel = new SummonerLevel()
-                {
-                    ExpTierMod = 1,
-                    GrantRp = 0,
-                    ExpForLoss = 0,
-                    SummonerTier = 1,
-                    InfTierMod = 1,
-                    ExpToNextLevel = 1250,
-                    ExpForWin = 0,
-                    Level = summonerSender._sumLvl
+                    InfPoints = 0,
+                    ExpPoints = 32651,
+                    SummonerId = summonerSender._sumId,
+                    SummonerLevel = 30
                 }
             };
 

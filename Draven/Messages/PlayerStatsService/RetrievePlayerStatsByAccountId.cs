@@ -19,7 +19,6 @@ namespace Draven.Messages.PlayerStatsService
             {
                 PlayerStatSummaries = new PlayerStatSummaries()
                 {
-                    Season = 4,
                     UserID = Convert.ToInt32(summonerSender._sumId),
                     SummaryList = new RtmpSharp.IO.AMF3.ArrayCollection()
                     {

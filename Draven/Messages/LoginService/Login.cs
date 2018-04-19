@@ -44,6 +44,7 @@ namespace Draven.Messages.LoginService
 
             
             newClient.setSession(session);
+            newClient._accId = Convert.ToDouble(Data["id"]);
             newClient._sumId = Convert.ToDouble(SummonerData["id"]);
             newClient._summonername = SummonerData["summonerName"];
             newClient._sumIcon = Convert.ToDouble(SummonerData["icon"]);

@@ -25,8 +25,16 @@ namespace Draven.Messages.InventoryService
                     ChampionID = champ.ID,
                     Active = true,
                     BotEnabled = true,
-                    RankedPlayEnabled = true,
-                    FreeToPlay = !champ.IsFreeToPlay
+                    Banned = false,
+                    Chromas = null,
+                    Description = "",
+                    DisplayName = "",
+                    ChampionData = null,
+                    FreeToPlayReward = true,
+                    OwnedByYourTeam = true,
+                    OwnedByEnemyTeam = true,
+                    DefaultSkin = null,
+                    FreeToPlay = true,
                 };
 
                 champDTO.ChampionSkins = new ArrayCollection();
