@@ -1,10 +1,10 @@
-﻿﻿using RtmpSharp.IO;
-using RtmpSharp.IO.AMF3;
-using System;
-using System.Collections.Generic;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Platform.Catalog
 {
+    using System;
+
+    using RtmpSharp.IO;
+    using RtmpSharp.IO.AMF3;
+
     [Serializable]
     [SerializedName("com.riotgames.platform.catalog.champion.ChampionDTO")]
     public class ChampionDTO

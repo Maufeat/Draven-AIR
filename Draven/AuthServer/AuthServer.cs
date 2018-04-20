@@ -1,15 +1,17 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-
-namespace Draven
+﻿namespace Draven.AuthServer
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using Draven.DatabaseManager;
+
+    using Newtonsoft.Json;
+
     class AuthServer
     {
         private readonly HttpListener _listener = new HttpListener();

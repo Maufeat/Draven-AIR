@@ -1,11 +1,13 @@
 ﻿using Draven.Structures;
-using Messages;
+
 using RtmpSharp.IO.AMF3;
 using RtmpSharp.Messaging;
 using System.Collections.Generic;
 
 namespace Draven.Messages.MatchmakerService
 {
+    using Draven.Structures.Platform.Login.Matchmaking;
+
     class GetAvailableQueues : IMessage
     {
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)

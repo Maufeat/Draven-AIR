@@ -1,8 +1,9 @@
-﻿﻿using RtmpSharp.IO;
-using System;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Platform.Statistics
 {
+    using System;
+
+    using RtmpSharp.IO;
+
     [Serializable]
     [SerializedName("com.riotgames.platform.statistics.SummaryAggStat")]
     public class SummaryAggStat

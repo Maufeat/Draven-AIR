@@ -1,6 +1,6 @@
 ﻿using Draven.ServerModels;
 using Draven.Structures;
-using Messages;
+
 using RtmpSharp.IO.AMF3;
 using RtmpSharp.Messaging;
 using System;
@@ -8,6 +8,9 @@ using System.Collections.Generic;
 
 namespace Draven.Messages.LeaguesServiceProxy
 {
+    using Draven.Structures.Leagues.Client.DTO;
+    using Draven.Structures.Leagues.Pojo;
+
     class GetAllMyLeagues : IMessage
     {
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)

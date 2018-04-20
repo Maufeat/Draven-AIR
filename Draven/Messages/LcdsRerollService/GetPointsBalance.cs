@@ -1,5 +1,5 @@
 ﻿using Draven.Structures;
-using Messages;
+
 using RtmpSharp.Messaging;
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace Draven.Messages.LcdsRerollService
 {
+    using Draven.Structures.Platform.Reroll.Pojo;
+
     class GetPointsBalance : IMessage
     {
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)

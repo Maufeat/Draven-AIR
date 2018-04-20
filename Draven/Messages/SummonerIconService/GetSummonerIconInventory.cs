@@ -1,6 +1,6 @@
 ﻿using Draven.ServerModels;
 using Draven.Structures;
-using Messages;
+
 using Newtonsoft.Json;
 using RtmpSharp.IO.AMF3;
 using RtmpSharp.Messaging;
@@ -9,6 +9,9 @@ using System.Net;
 
 namespace Draven.Messages.SummonerIconService
 {
+    using Draven.DatabaseManager;
+    using Draven.Structures.Platform.Summoner;
+
     class GetSummonerIconInventory : IMessage
     {
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)

@@ -1,12 +1,14 @@
 ﻿using Draven.ServerModels;
 using Draven.Structures;
-using Messages;
+
 using RtmpSharp.IO.AMF3;
 using RtmpSharp.Messaging;
 using System.Collections.Generic;
 
 namespace Draven.Messages.MasteryBookService
 {
+    using Draven.Structures.Platform.Summoner;
+
     class GetMasteryBook : IMessage
     {
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)

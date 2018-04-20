@@ -19,6 +19,9 @@ using System.Threading.Tasks;
 
 namespace Draven
 {
+    using Draven.Certificate;
+    using Draven.Structures.Platform.Client;
+
     class Program
     {
         //Console
@@ -33,7 +36,7 @@ namespace Draven
         public static string database = "lol";
 
         //Server
-        private static AuthServer _auth;
+        private static AuthServer.AuthServer _auth;
         private static SerializationContext _context;
         private static RtmpServer _server;
         private static MessageHandler _handler;
@@ -52,7 +55,7 @@ namespace Draven
             Console.Title = "Draven";
             printHeader();
 
-            if (!DatabaseManager.InitConnection())
+            if (!DatabaseManager.DatabaseManager.InitConnection())
             {
                 Console.WriteLine("[ERR] Press any Key to exit... (Check your Database Connection)");
                 Console.ReadKey();
@@ -60,10 +63,10 @@ namespace Draven
             }
 
             //DatabaseManager.InitMasteryAndRuneTree();
-            DatabaseManager.InitProfileIcons();
+            DatabaseManager.DatabaseManager.InitProfileIcons();
 
             //Create the Authentication Server to handle login requests and client page
-            _auth = new AuthServer(AuthServer.HandleWebServ, AuthLocations);
+            _auth = new AuthServer.AuthServer(AuthServer.AuthServer.HandleWebServ, AuthLocations);
             
             //Load the certificate store for the RTMPS server
             var certificateStore = new X509Store(StoreName.TrustedPeople, StoreLocation.LocalMachine);

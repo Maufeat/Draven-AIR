@@ -1,13 +1,10 @@
-﻿using RtmpSharp.IO;
-using RtmpSharp.IO.AMF3;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Platform.Statistics
 {
+    using System;
+
+    using RtmpSharp.IO;
+    using RtmpSharp.IO.AMF3;
+
     [Serializable]
     class PlayerChampionStats
     {

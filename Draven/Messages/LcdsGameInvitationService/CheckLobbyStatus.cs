@@ -1,5 +1,4 @@
-﻿using Messages;
-using RtmpSharp.Messaging;
+﻿using RtmpSharp.Messaging;
 
 namespace Draven.Messages.LcdsGameInvitationService
 {

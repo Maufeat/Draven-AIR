@@ -1,12 +1,9 @@
-﻿using RtmpSharp.IO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Platform.Reroll.Pojo
 {
+    using System;
+
+    using RtmpSharp.IO;
+
     [Serializable]
     [SerializedName("com.riotgames.platform.reroll.pojo.PointSummary")]
     class PointSummary

@@ -1,10 +1,13 @@
 ﻿using Draven.Structures;
-using Messages;
+
 using RtmpSharp.IO.AMF3;
 using RtmpSharp.Messaging;
 
 namespace Draven.Messages.LeaguesServiceProxy
 {
+    using Draven.Structures.Leagues.Pojo;
+    using Draven.Structures.Platform.Leagues;
+
     class GetMyLeaguePositions : IMessage
     {
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)

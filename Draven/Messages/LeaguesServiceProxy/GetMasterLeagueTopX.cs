@@ -1,6 +1,6 @@
 ﻿using Draven.ServerModels;
 using Draven.Structures;
-using Messages;
+
 using RtmpSharp.IO.AMF3;
 using RtmpSharp.Messaging;
 using System;
@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 
 namespace Draven.Messages.LeaguesServiceProxy
 {
+    using Draven.Structures.Leagues.Pojo;
+
     class GetMasterLeagueTopX : IMessage
     {
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)

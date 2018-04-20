@@ -1,14 +1,19 @@
-﻿using Draven.Structures;
-using MySql.Data.MySqlClient;
-using Newtonsoft.Json;
-using RtmpSharp.IO.AMF3;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Net;
-
-namespace Draven
+﻿namespace Draven.DatabaseManager
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Net;
+
+    using Draven.Structures.Platform.Catalog;
+    using Draven.Structures.Platform.Summoner;
+
+    using MySql.Data.MySqlClient;
+
+    using Newtonsoft.Json;
+
+    using RtmpSharp.IO.AMF3;
+
     public static class DatabaseManager
     {
         public static ArrayCollection TalentTree { get; set; }

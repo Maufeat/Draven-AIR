@@ -1,10 +1,10 @@
-﻿﻿using RtmpSharp.IO;
-using RtmpSharp.IO.AMF3;
-using System;
-using System.Collections.Generic;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Platform.Login.Matchmaking
 {
+    using System;
+
+    using RtmpSharp.IO;
+    using RtmpSharp.IO.AMF3;
+
     [Serializable]
     [SerializedName("com.riotgames.platform.matchmaking.SearchingForMatchNotification")]
     public class SearchingForMatchNotification

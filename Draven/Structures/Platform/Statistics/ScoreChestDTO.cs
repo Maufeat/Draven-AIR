@@ -1,9 +1,11 @@
-﻿using Newtonsoft.Json;
-using RtmpSharp.IO;
-using System;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Platform.Statistics
 {
+    using System;
+
+    using Newtonsoft.Json;
+
+    using RtmpSharp.IO;
+
     [Serializable]
     [SerializedName("com.riotgames.championmastery.pojo.ScoreChestDTO")]
     public class ScoreChestDTO

@@ -1,9 +1,10 @@
-﻿using RtmpSharp.IO;
-using RtmpSharp.IO.AMF3;
-using System;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Team.DTO
 {
+    using System;
+
+    using RtmpSharp.IO;
+    using RtmpSharp.IO.AMF3;
+
     [Serializable]
     [SerializedName("com.riotgames.team.dto.PlayerDTO")]
     class PlayerDTO

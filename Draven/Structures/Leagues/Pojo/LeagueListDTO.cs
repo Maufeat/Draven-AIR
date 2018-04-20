@@ -1,14 +1,12 @@
-﻿using Newtonsoft.Json;
-using RtmpSharp.IO;
-using RtmpSharp.IO.AMF3;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Leagues.Pojo
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Newtonsoft.Json;
+
+    using RtmpSharp.IO;
+
     [Serializable]
     [SerializedName("com.riotgames.leagues.pojo.LeagueListDTO")]
     class LeagueListDTO

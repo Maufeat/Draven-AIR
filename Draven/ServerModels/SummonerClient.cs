@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 
 namespace Draven.ServerModels
 {
+    using Draven.Structures.Platform.Login;
+
     class SummonerClient
     {
         public double _sumId { get; set; }
