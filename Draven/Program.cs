@@ -22,6 +22,7 @@ namespace Draven
     using Draven.Certificate;
     using Draven.Helpers;
     using Draven.Structures.Platform.Client;
+    using System.Text.RegularExpressions;
 
     public static class Program
     {
@@ -108,10 +109,13 @@ namespace Draven
             
             //Generate the SerializationContext
             _context = new SerializationContext();
-            var structures = Assembly.GetExecutingAssembly().GetTypes().Where(x => String.Equals(x.Namespace, "Draven.Structures", StringComparison.Ordinal));
+            var structures = Assembly.GetExecutingAssembly().GetTypes().Where(x => isStructureNamespace(x.Namespace));
 
             foreach (Type ObjectType in structures)
+            {
                 _context.Register(ObjectType);
+                $"Successfully registered ({ObjectType.Namespace}) to handler".PrintSuccess();
+            }
 
             //Create the RTMPS server with the context and certificate
             _server = new RtmpServer(new IPEndPoint(IPAddress.Parse(RTMPSHost), RTMPSPort), _context, _rtmpsCert);
@@ -155,6 +159,14 @@ namespace Draven
             f.Close();
             return data;
         }
+
+        static bool isStructureNamespace(string name)
+        {
+            if (name == null || name == "")
+                return false;
+            return name.Contains("Draven.Structures");
+        }
+
         static void ClientMessageReceived(object sender, RemotingMessageReceivedEventArgs e)
         {
             try
@@ -170,7 +182,7 @@ namespace Draven
                 LogRequest(tempRecv, e, targetSummoner);
                 e = tempRecv;
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
         }
 
         static void LogRequest(RemotingMessageReceivedEventArgs tempRecv, RemotingMessageReceivedEventArgs e, SummonerClient sc)
