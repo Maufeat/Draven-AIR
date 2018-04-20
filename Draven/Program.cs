@@ -56,10 +56,9 @@ namespace Draven
         /// </summary>
         private static readonly List <string> Services = new List <string>
         {
-            "LoginService", "MatchmakerService", "ClientFacadeService", "InventoryService", "MasteryBookService",
-            "SummonerRuneService",
-            "PlayerPreferencesService","LcdsGameInvitationService","LeaguesServiceProxy",
-            "SummonerIconService","LcdsServiceProxy","SummonerService","LcdsRerollService","SummonerTeamService","PlayerStatsService"
+            "LoginService", "MatchmakerService", "ClientFacadeService", "InventoryService", "MasteryBookService", "SummonerRuneService", "PlayerPreferencesService",
+            "LcdsGameInvitationService", "LeaguesServiceProxy", "SummonerIconService", "LcdsServiceProxy", "SummonerService", "LcdsRerollService", "SummonerTeamService",
+            "PlayerStatsService"
         };
 
 

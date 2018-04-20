@@ -12,7 +12,7 @@
 
     using Newtonsoft.Json;
 
-    class AuthServer
+    public class AuthServer
     {
         private readonly HttpListener _listener = new HttpListener();
         private readonly Func<HttpListenerRequest, Task<object>> _responderMethod;
