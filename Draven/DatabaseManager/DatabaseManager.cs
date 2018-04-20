@@ -40,31 +40,6 @@
             }
         }
 
-        public class MasteryData
-        {
-            public int id { get; set; }
-            public string name { get; set; }
-            public string preReq { get; set; }
-            public int ranks { get; set; }
-            public List<string> description { get; set; }
-        }
-
-        public class Masteries
-        {
-            public string type { get; set; }
-
-            public string version { get; set; }
-
-            public Dictionary<string, MasteryData> data { get; set; }
-
-            public Dictionary<string, List<List<MasteryLite>>> tree { get; set; }
-        }
-        public class MasteryLite
-        {
-            public string masteryId { get; set; }
-
-            public string preReq { get; set; }
-        }
 
         public static void InitMasteryAndRuneTree()
         {
@@ -216,16 +191,6 @@
         }
 
 
-        public class ProfileJsonTree
-        {
-            public string type { get; set; }
-            public string version { get; set; }
-            public Dictionary<string, ProfileIconTree> data { get; set; }
-        }
-        public class ProfileIconTree
-        {
-            public int id { get; set; }
-        }
 
         public static List<int> ProfileIcons = new List<int>();
 

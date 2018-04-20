@@ -28,11 +28,10 @@ namespace Draven.Redirector
         {
             _lastWrite = DateTime.MinValue;
 
-            _watcher = new FileSystemWatcher();
-            _watcher.Path = Program.LeagueDrive;
-            _watcher.Filter = "lol.properties";
-            _watcher.IncludeSubdirectories = true;
-            _watcher.NotifyFilter = NotifyFilters.LastWrite;
+            _watcher = new FileSystemWatcher
+            {
+                Path = Program.LeagueDrive, Filter = "lol.properties", IncludeSubdirectories = true, NotifyFilter = NotifyFilters.LastWrite
+            };
 
             _watcher.Changed += new FileSystemEventHandler(OnChanged);
             _watcher.EnableRaisingEvents = true;
@@ -52,7 +51,7 @@ namespace Draven.Redirector
                 if (diffInSeconds < 5)
                     return;
 
-                Console.WriteLine(string.Format("[LOG] LoLPatcher detected, server redirected to {0}", Program.RTMPSHost));
+                Console.WriteLine($"[LOG] LoLPatcher detected, server redirected to {Program.RTMPSHost}");
 
                 //Generate the properties according to the current client's IP address
                 DravenProperties properties = new DravenProperties();
@@ -61,11 +60,11 @@ namespace Draven.Redirector
                 //properties.host = "prod.oc1.lol.riotgames.com"; //Uncomment for LoLNotes
 
                 BindingFlags bindingFlags = BindingFlags.Public | BindingFlags.Instance;
-                PropertyInfo[] members = typeof(DravenProperties).GetProperties(bindingFlags).ToArray();
-                List<string> modifiedProperties = new List<string>();
+                PropertyInfo[] members = typeof (DravenProperties).GetProperties(bindingFlags).ToArray();
+                List <string> modifiedProperties = new List <string>();
                 foreach (var x in members)
                 {
-                    modifiedProperties.Add(string.Format("{0}={1}", x.Name, x.GetValue(properties)));
+                    modifiedProperties.Add($"{x.Name}={x.GetValue(properties)}");
                 }
 
                 //Wait for the file to be writeable
@@ -81,10 +80,12 @@ namespace Draven.Redirector
 
                 //PoroServer.ClientLocation = e.FullPath.Replace("lol.properties", "");
 
-                if (PatcherFound != null)
-                    PatcherFound();
+                PatcherFound?.Invoke();
             }
-            catch (Exception xe) { }
+            catch (Exception xe)
+            {
+                //Ignored
+            }
         }
 
         private FileStream WaitForFile(string fullPath, FileMode mode, FileAccess access, FileShare share)

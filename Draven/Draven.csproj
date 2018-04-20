@@ -87,6 +87,11 @@
     <Compile Include="AuthServer\AuthServer.cs" />
     <Compile Include="Certificate\CertGen.cs" />
     <Compile Include="DatabaseManager\DatabaseManager.cs" />
+    <Compile Include="DatabaseManager\Database Structures\Masteries.cs" />
+    <Compile Include="DatabaseManager\Database Structures\MasteryData.cs" />
+    <Compile Include="DatabaseManager\Database Structures\MasteryLite.cs" />
+    <Compile Include="DatabaseManager\Database Structures\ProfileIconTree.cs" />
+    <Compile Include="DatabaseManager\Database Structures\ProfileJsonTree.cs" />
     <Compile Include="Helpers\ConsoleHelper.cs" />
     <Compile Include="Messages\ClientFacadeService\GetLoginDataPacketForUser.cs" />
     <Compile Include="Messages\IMessage.cs" />
@@ -122,6 +127,7 @@
     <Compile Include="Redirector\Properties\DravenProperties.cs" />
     <Compile Include="Redirector\PropertyRedirector.cs" />
     <Compile Include="ServerModels\SummonerClient.cs" />
+    <Compile Include="Structures\Configuration.cs" />
     <Compile Include="Structures\Kudos\PendingKudosDTO.cs" />
     <Compile Include="Structures\Leagues\Client\DTO\SummonerLeaguesDTO.cs" />
     <Compile Include="Structures\Leagues\Pojo\LeagueItemDTO.cs" />
@@ -217,6 +223,7 @@
       <Name>rtmp-sharp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
