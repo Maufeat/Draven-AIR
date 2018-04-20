@@ -64,7 +64,7 @@ namespace Draven
 
             //Create the Authentication Server to handle login requests and client page
             _auth = new AuthServer(AuthServer.HandleWebServ, AuthLocations);
-
+            
             //Load the certificate store for the RTMPS server
             var certificateStore = new X509Store(StoreName.TrustedPeople, StoreLocation.LocalMachine);
             certificateStore.Open(OpenFlags.MaxAllowed);
@@ -321,7 +321,7 @@ namespace Draven
                         }
                     }
                 };
-                Console.WriteLine(JsonConvert.SerializeObject(configData));
+                //Console.WriteLine(JsonConvert.SerializeObject(configData));
                 ClientDynamicConfigurationNotification clientConfig = new ClientDynamicConfigurationNotification
                 {
                     Delta = false,

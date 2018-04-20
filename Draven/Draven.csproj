@@ -159,6 +159,8 @@
     <Compile Include="Structures\Platform\Statistics\PlayerStats.cs" />
     <Compile Include="Structures\Platform\Statistics\PlayerStatSummaries.cs" />
     <Compile Include="Structures\Platform\Statistics\PlayerStatSummary.cs" />
+    <Compile Include="Structures\Platform\Statistics\ChampionMasteryDTO.cs" />
+    <Compile Include="Structures\Platform\Statistics\ScoreChestDTO.cs" />
     <Compile Include="Structures\Platform\Statistics\SummaryAggStat.cs" />
     <Compile Include="Structures\Platform\Statistics\SummaryAggStats.cs" />
     <Compile Include="Structures\Platform\Summoner\AllSummonerData.cs" />
