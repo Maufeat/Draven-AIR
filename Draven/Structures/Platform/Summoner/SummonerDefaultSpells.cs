@@ -1,8 +1,9 @@
-﻿﻿using RtmpSharp.IO;
-using System;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Platform.Summoner
 {
+    using System;
+
+    using RtmpSharp.IO;
+
     [Serializable]
     [SerializedName("com.riotgames.platform.summoner.SummonerDefaultSpells")]
     public class SummonerDefaultSpells

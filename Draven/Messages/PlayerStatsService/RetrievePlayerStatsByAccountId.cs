@@ -1,11 +1,13 @@
 ﻿using Draven.ServerModels;
 using Draven.Structures;
-using Messages;
+
 using RtmpSharp.Messaging;
 using System;
 
 namespace Draven.Messages.PlayerStatsService
 {
+    using Draven.Structures.Platform.Statistics;
+
     class RetrievePlayerStatsByAccountId : IMessage
     {
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)

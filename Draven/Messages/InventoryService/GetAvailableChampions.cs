@@ -1,5 +1,5 @@
 ﻿using Draven.Structures;
-using Messages;
+
 using RtmpSharp.IO.AMF3;
 using RtmpSharp.Messaging;
 using System;
@@ -9,6 +9,9 @@ using System.Linq;
 
 namespace Draven.Messages.InventoryService
 {
+    using Draven.DatabaseManager;
+    using Draven.Structures.Platform.Catalog;
+
     class GetAvailableChampions : IMessage
     {
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)

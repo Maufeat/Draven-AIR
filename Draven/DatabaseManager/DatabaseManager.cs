@@ -1,14 +1,19 @@
-﻿using Draven.Structures;
-using MySql.Data.MySqlClient;
-using Newtonsoft.Json;
-using RtmpSharp.IO.AMF3;
-using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Net;
-
-namespace Draven
+﻿namespace Draven.DatabaseManager
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Data;
+    using System.Net;
+
+    using Draven.Structures.Platform.Catalog;
+    using Draven.Structures.Platform.Summoner;
+
+    using MySql.Data.MySqlClient;
+
+    using Newtonsoft.Json;
+
+    using RtmpSharp.IO.AMF3;
+
     public static class DatabaseManager
     {
         public static ArrayCollection TalentTree { get; set; }
@@ -35,31 +40,6 @@ namespace Draven
             }
         }
 
-        public class MasteryData
-        {
-            public int id { get; set; }
-            public string name { get; set; }
-            public string preReq { get; set; }
-            public int ranks { get; set; }
-            public List<string> description { get; set; }
-        }
-
-        public class Masteries
-        {
-            public string type { get; set; }
-
-            public string version { get; set; }
-
-            public Dictionary<string, MasteryData> data { get; set; }
-
-            public Dictionary<string, List<List<MasteryLite>>> tree { get; set; }
-        }
-        public class MasteryLite
-        {
-            public string masteryId { get; set; }
-
-            public string preReq { get; set; }
-        }
 
         public static void InitMasteryAndRuneTree()
         {
@@ -211,16 +191,6 @@ namespace Draven
         }
 
 
-        public class ProfileJsonTree
-        {
-            public string type { get; set; }
-            public string version { get; set; }
-            public Dictionary<string, ProfileIconTree> data { get; set; }
-        }
-        public class ProfileIconTree
-        {
-            public int id { get; set; }
-        }
 
         public static List<int> ProfileIcons = new List<int>();
 

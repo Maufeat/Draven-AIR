@@ -1,5 +1,5 @@
 ﻿using Draven.ServerModels;
-using Messages;
+
 using RtmpSharp.Messaging;
 using System;
 using System.Collections.Generic;
@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace Draven.Messages.SummonerService
 {
+    using Draven.DatabaseManager;
+
     class UpdateProfileIconId : IMessage
     {
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)

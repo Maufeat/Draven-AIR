@@ -1,5 +1,5 @@
 ﻿using Draven.Structures;
-using Messages;
+
 using RtmpSharp.IO;
 using RtmpSharp.IO.AMF3;
 using RtmpSharp.Messaging;
@@ -8,6 +8,9 @@ using System.Collections.Generic;
 
 namespace Draven.Messages.MatchmakerService
 {
+    using Draven.Structures.Platform.Login.Matchmaking;
+    using Draven.Structures.Platform.Matchmaking;
+
     class AttachToQueue: IMessage
     {
         private string ObjectToXml(object output)

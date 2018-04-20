@@ -1,10 +1,9 @@
-﻿using RtmpSharp.IO;
-using RtmpSharp.IO.AMF3;
-using System;
-using System.Collections.Generic;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Platform.Summoner
 {
+    using System;
+
+    using RtmpSharp.IO;
+
     public class BaseSummoner
     {
         [SerializedName("summonerId")]

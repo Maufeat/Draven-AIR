@@ -1,9 +1,10 @@
-﻿﻿using RtmpSharp.IO;
-using RtmpSharp.IO.AMF3;
-using System;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Platform.Leagues
 {
+    using System;
+
+    using RtmpSharp.IO;
+    using RtmpSharp.IO.AMF3;
+
     [Serializable]
     [SerializedName("com.riotgames.platform.leagues.client.dto.SummonerLeagueItemsDTO")]
     public class SummonerLeagueItemsDTO

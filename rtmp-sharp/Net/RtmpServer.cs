@@ -17,7 +17,7 @@ namespace RtmpSharp.Net
     {
         //TODO: Handle disconnecting
         public event EventHandler<RemotingMessageReceivedEventArgs> ClientMessageReceived;
-        public event EventHandler<CommandMessageReceivedEventArgs> ClientCommandReceieved;
+        public event EventHandler<CommandMessageReceivedEventArgs> ClientCommandReceived;
 
         private TcpListener _listener;
         private IPEndPoint _serverEndPoint;
@@ -141,10 +141,7 @@ namespace RtmpSharp.Net
                     throw new NotSupportedException();
             }
 
-            if (ClientCommandReceieved != null)
-            {
-                ClientCommandReceieved(sender, e);
-            }
+            ClientCommandReceived?.Invoke(sender, e);
         }
 
         void ServerMessageReceived(object sender, RemotingMessageReceivedEventArgs e)

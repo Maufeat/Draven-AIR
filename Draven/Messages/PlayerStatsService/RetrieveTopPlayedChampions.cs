@@ -1,12 +1,14 @@
 ﻿using Draven.ServerModels;
 using Draven.Structures;
-using Messages;
+
 using RtmpSharp.IO.AMF3;
 using RtmpSharp.Messaging;
 using System;
 
 namespace Draven.Messages.PlayerStatsService
 {
+    using Draven.Structures.Platform.Statistics;
+
     class RetrieveTopPlayedChampions : IMessage
     {
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)

@@ -1,14 +1,15 @@
-﻿﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using RtmpSharp.IO;
-using RtmpSharp.IO.AMF3;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Platform.SystemState
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+
+    using RtmpSharp.IO;
+    using RtmpSharp.IO.AMF3;
+
     [Serializable]
     [SerializedName("com.riotgames.platform.systemstate.ClientSystemStatesNotification")]
     public class ClientSystemStatesNotification : IExternalizable
@@ -65,9 +66,9 @@ namespace Draven.Structures
 
         public void ReadExternal(IDataInput input)
         {
-            Json = input.ReadUtf((int)input.ReadUInt32());
+            this.Json = input.ReadUtf((int)input.ReadUInt32());
 
-            Dictionary<string, object> deserializedJSON = JsonConvert.DeserializeObject<Dictionary<string, object>>(Json);
+            Dictionary<string, object> deserializedJSON = JsonConvert.DeserializeObject<Dictionary<string, object>>(this.Json);
 
             Type classType = typeof(ClientSystemStatesNotification);
             foreach (KeyValuePair<string, object> keyPair in deserializedJSON)
@@ -102,7 +103,7 @@ namespace Draven.Structures
 
         public void WriteExternal(IDataOutput output)
         {
-            var bytes = Encoding.UTF8.GetBytes(Json);
+            var bytes = Encoding.UTF8.GetBytes(this.Json);
 
             output.WriteInt32(bytes.Length);
             output.WriteBytes(bytes);

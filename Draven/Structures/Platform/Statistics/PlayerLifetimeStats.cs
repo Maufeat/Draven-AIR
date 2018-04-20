@@ -1,10 +1,9 @@
-﻿using RtmpSharp.IO;
-using RtmpSharp.IO.AMF3;
-using System;
-using System.Collections.Generic;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Platform.Statistics
 {
+    using System;
+
+    using RtmpSharp.IO;
+
     [Serializable]
     [SerializedName("com.riotgames.platform.statistics.PlayerLifetimeStats")]
     class PlayerLifetimeStats

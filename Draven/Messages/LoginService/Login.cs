@@ -1,6 +1,6 @@
 ﻿using Draven.ServerModels;
 using Draven.Structures;
-using Messages;
+
 using RtmpSharp.Messaging;
 using RtmpSharp.Net;
 using System;
@@ -9,6 +9,10 @@ using System.ComponentModel;
 
 namespace Draven.Messages.LoginService
 {
+    using Draven.DatabaseManager;
+    using Draven.Structures.Platform.Account;
+    using Draven.Structures.Platform.Login;
+
     class Login : IMessage
     {
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)

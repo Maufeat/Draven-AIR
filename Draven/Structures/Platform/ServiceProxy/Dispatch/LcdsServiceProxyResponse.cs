@@ -1,12 +1,9 @@
-﻿using RtmpSharp.IO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Platform.ServiceProxy.Dispatch
 {
+    using System;
+
+    using RtmpSharp.IO;
+
     [Serializable]
     [SerializedName("com.riotgames.platform.serviceproxy.dispatch.LcdsServiceProxyResponse")]
     class LcdsServiceProxyResponse

@@ -1,6 +1,6 @@
 ﻿using Draven.ServerModels;
 using Draven.Structures;
-using Messages;
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RtmpSharp.IO;
@@ -12,6 +12,13 @@ using System.Net;
 
 namespace Draven.Messages.ClientFacadeService
 {
+    using Draven.Structures.Kudos;
+    using Draven.Structures.Platform.Catalog;
+    using Draven.Structures.Platform.ClientFacade;
+    using Draven.Structures.Platform.Game;
+    using Draven.Structures.Platform.Statistics;
+    using Draven.Structures.Platform.Summoner;
+    using Draven.Structures.Platform.SystemState;
 
     class GetLoginDataPacketForUser : IMessage
     {

@@ -1,10 +1,15 @@
-﻿﻿using RtmpSharp.IO;
-using RtmpSharp.IO.AMF3;
-using System;
-using System.Collections.Generic;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Platform.ClientFacade
 {
+    using System;
+
+    using Draven.Structures.Kudos;
+    using Draven.Structures.Platform.Statistics;
+    using Draven.Structures.Platform.Summoner;
+    using Draven.Structures.Platform.SystemState;
+
+    using RtmpSharp.IO;
+    using RtmpSharp.IO.AMF3;
+
     [Serializable]
     [SerializedName("com.riotgames.platform.clientfacade.domain.LoginDataPacket")]
     public class LoginDataPacket

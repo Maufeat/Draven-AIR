@@ -19,7 +19,12 @@ using System.Threading.Tasks;
 
 namespace Draven
 {
-    class Program
+    using Draven.Certificate;
+    using Draven.Helpers;
+    using Draven.Structures.Platform.Client;
+    using System.Text.RegularExpressions;
+
+    public static class Program
     {
         //Console
         private static string Header1 = "Draven v0.0.1 - Based on Poro from Snowl";
@@ -33,7 +38,7 @@ namespace Draven
         public static string database = "lol";
 
         //Server
-        private static AuthServer _auth;
+        private static AuthServer.AuthServer _auth;
         private static SerializationContext _context;
         private static RtmpServer _server;
         private static MessageHandler _handler;
@@ -47,12 +52,23 @@ namespace Draven
         public static string LeagueDrive = "C:/";
         public static string[] AuthLocations = new string[] { "http://127.0.0.1:8080/" };
 
+        /// <summary>
+        /// List of services to register in the handlers
+        /// </summary>
+        private static readonly List <string> Services = new List <string>
+        {
+            "LoginService", "MatchmakerService", "ClientFacadeService", "InventoryService", "MasteryBookService", "SummonerRuneService", "PlayerPreferencesService",
+            "LcdsGameInvitationService", "LeaguesServiceProxy", "SummonerIconService", "LcdsServiceProxy", "SummonerService", "LcdsRerollService", "SummonerTeamService",
+            "PlayerStatsService"
+        };
+
+
         static void Main(string[] args)
         {
             Console.Title = "Draven";
             printHeader();
 
-            if (!DatabaseManager.InitConnection())
+            if (!DatabaseManager.DatabaseManager.InitConnection())
             {
                 Console.WriteLine("[ERR] Press any Key to exit... (Check your Database Connection)");
                 Console.ReadKey();
@@ -60,10 +76,10 @@ namespace Draven
             }
 
             //DatabaseManager.InitMasteryAndRuneTree();
-            DatabaseManager.InitProfileIcons();
+            DatabaseManager.DatabaseManager.InitProfileIcons();
 
             //Create the Authentication Server to handle login requests and client page
-            _auth = new AuthServer(AuthServer.HandleWebServ, AuthLocations);
+            _auth = new AuthServer.AuthServer(AuthServer.AuthServer.HandleWebServ, AuthLocations);
             
             //Load the certificate store for the RTMPS server
             var certificateStore = new X509Store(StoreName.TrustedPeople, StoreLocation.LocalMachine);
@@ -72,7 +88,7 @@ namespace Draven
             //Remove last certificate in case it wasn't deleted on close
             foreach (var cert in certificateStore.Certificates)
             {
-                if (cert.IssuerName.Name == string.Format("CN={0}", RTMPSHost))
+                if (cert.IssuerName.Name == $"CN={RTMPSHost}")
                 {
                     certificateStore.Remove(cert);
                 }
@@ -80,38 +96,48 @@ namespace Draven
 
             //Generate new certificate for this run and add it to the store.
             var _rtmpsCert = CertGen.CreateSelfSignedCertificate(RTMPSHost);
-            certificateStore.Add(_rtmpsCert);
-            certificateStore.Close();
-            /**/
+            try
+            {
+                certificateStore.Add(_rtmpsCert);
+                certificateStore.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw new Exception("Faile to create and store the SelfSigned cert to the store.");
+            }
+            
             //Generate the SerializationContext
             _context = new SerializationContext();
-            var structures = Assembly.GetExecutingAssembly().GetTypes().Where(x => String.Equals(x.Namespace, "Draven.Structures", StringComparison.Ordinal));
+            var structures = Assembly.GetExecutingAssembly().GetTypes().Where(x => isStructureNamespace(x.Namespace));
 
             foreach (Type ObjectType in structures)
+            {
                 _context.Register(ObjectType);
+                $"Successfully registered ({ObjectType.Namespace}) to handler".PrintSuccess();
+            }
 
             //Create the RTMPS server with the context and certificate
             _server = new RtmpServer(new IPEndPoint(IPAddress.Parse(RTMPSHost), RTMPSPort), _context, _rtmpsCert);
-            _server.ClientCommandReceieved += ClientCommandReceieved;
+            _server.ClientCommandReceived += ClientCommandReceieved;
             _server.ClientMessageReceived += ClientMessageReceived;
 
             //Set up the handler
             _handler = new MessageHandler();
-            _handler.Register("LoginService");
-            _handler.Register("MatchmakerService");
-            _handler.Register("ClientFacadeService");
-            _handler.Register("InventoryService");
-            _handler.Register("MasteryBookService");
-            _handler.Register("SummonerRuneService");
-            _handler.Register("PlayerPreferencesService");
-            _handler.Register("LcdsGameInvitationService");
-            _handler.Register("LeaguesServiceProxy");
-            _handler.Register("SummonerIconService");
-            _handler.Register("LcdsServiceProxy");
-            _handler.Register("SummonerService");
-            _handler.Register("LcdsRerollService");
-            _handler.Register("SummonerTeamService");
-            _handler.Register("PlayerStatsService");
+            foreach (var service in Services)
+            {
+                try
+                {
+                    _handler.Register(service);
+                }
+                catch (Exception e)
+                {
+                    $"Failed to register`{service}".PrintError();
+                    e.ToString().PrintError();
+                }
+
+                $"Successfully registered ({service}) to handler".PrintSuccess();
+            }
 
             //Set up the property redirector
             _redirector = new PropertyRedirector();
@@ -133,6 +159,14 @@ namespace Draven
             f.Close();
             return data;
         }
+
+        static bool isStructureNamespace(string name)
+        {
+            if (name == null || name == "")
+                return false;
+            return name.Contains("Draven.Structures");
+        }
+
         static void ClientMessageReceived(object sender, RemotingMessageReceivedEventArgs e)
         {
             try
@@ -148,7 +182,7 @@ namespace Draven
                 LogRequest(tempRecv, e, targetSummoner);
                 e = tempRecv;
             }
-            catch (Exception ex) { Console.WriteLine(ex.Message); }
+            catch (Exception ex) { Console.WriteLine(ex.ToString()); }
         }
 
         static void LogRequest(RemotingMessageReceivedEventArgs tempRecv, RemotingMessageReceivedEventArgs e, SummonerClient sc)

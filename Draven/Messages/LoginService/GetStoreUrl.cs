@@ -1,7 +1,6 @@
 ﻿using System;
 using Draven.Structures;
 using RtmpSharp.Messaging;
-using Messages;
 
 namespace Draven.Messages.LoginService
 {

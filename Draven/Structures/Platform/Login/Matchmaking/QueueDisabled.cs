@@ -1,8 +1,11 @@
-﻿using RtmpSharp.IO;
-using System;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Platform.Login.Matchmaking
 {
+    using System;
+
+    using Draven.Structures.Platform.Summoner;
+
+    using RtmpSharp.IO;
+
     [Serializable]
     [SerializedName("com.riotgames.platform.matchmaking.QueueDisabled")]
     public class QueueDisabled

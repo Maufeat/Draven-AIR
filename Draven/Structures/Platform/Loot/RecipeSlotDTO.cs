@@ -1,13 +1,11 @@
-﻿using Newtonsoft.Json;
-using RtmpSharp.IO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Platform.Loot
 {
+    using System;
+
+    using Newtonsoft.Json;
+
+    using RtmpSharp.IO;
+
     [Serializable]
     [SerializedName("com.riotgames.loot.dto.RecipeSlotClientDTO")]
     public class RecipeSlotDTO

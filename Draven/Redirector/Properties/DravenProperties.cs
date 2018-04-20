@@ -2,6 +2,7 @@
 {
     class DravenProperties
     {
+        //TODO get this info from system.yaml in the LOL's folder
         private string _host = Program.RTMPSHost;
         private string _xmpp_server_url = "192.168.178.20";//"chat.oc1.lol.riotgames.com";
         private string _lq_uri = "http://" + Program.RTMPSHost + ":8080";//"https://lq.oc1.lol.riotgames.com";

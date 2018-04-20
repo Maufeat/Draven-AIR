@@ -1,14 +1,14 @@
-﻿using Newtonsoft.Json;
-using RtmpSharp.IO;
-using RtmpSharp.IO.AMF3;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Draven.Structures
+﻿namespace Draven.Structures.Leagues.Client.DTO
 {
+    using System;
+    using System.Collections.Generic;
+
+    using Draven.Structures.Leagues.Pojo;
+
+    using Newtonsoft.Json;
+
+    using RtmpSharp.IO;
+
     [Serializable]
     [SerializedName("com.riotgames.platform.leagues.client.dto.SummonerLeaguesDTO")]
     class SummonerLeaguesDTO

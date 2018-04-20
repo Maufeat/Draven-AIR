@@ -1,5 +1,4 @@
-﻿using Messages;
-using RtmpSharp.IO.AMF3;
+﻿using RtmpSharp.IO.AMF3;
 using RtmpSharp.Messaging;
 using System.Collections.Generic;
 

@@ -1,16 +1,18 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Web;
-
-namespace Draven
+﻿namespace Draven.AuthServer
 {
-    class AuthServer
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Net;
+    using System.Text;
+    using System.Threading;
+    using System.Threading.Tasks;
+
+    using Draven.DatabaseManager;
+
+    using Newtonsoft.Json;
+
+    public class AuthServer
     {
         private readonly HttpListener _listener = new HttpListener();
         private readonly Func<HttpListenerRequest, Task<object>> _responderMethod;
@@ -19,14 +21,10 @@ namespace Draven
         {
             if (prefixes == null || prefixes.Length == 0)
                 throw new ArgumentException("prefixes");
-
-            if (method == null)
-                throw new ArgumentException("method");
-
             foreach (string s in prefixes)
                 _listener.Prefixes.Add(s);
 
-            _responderMethod = method;
+            _responderMethod = method ?? throw new ArgumentException("method");
         }
 
         public void Start()

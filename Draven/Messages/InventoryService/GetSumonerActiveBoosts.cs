@@ -1,11 +1,13 @@
 ﻿using Draven.ServerModels;
 using Draven.Structures;
-using Messages;
+
 using RtmpSharp.Messaging;
 using System;
 
 namespace Draven.Messages.InventoryService
 {
+    using Draven.Structures.Platform.Summoner;
+
     //Not a typo
     class GetSumonerActiveBoosts : IMessage
     {
