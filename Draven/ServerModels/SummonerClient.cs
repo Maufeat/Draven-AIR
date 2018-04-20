@@ -15,7 +15,7 @@ namespace Draven.ServerModels
 {
     using Draven.Structures.Platform.Login;
 
-    class SummonerClient
+    public class SummonerClient
     {
         public double _sumId { get; set; }
         public double _accId { get; set; }
@@ -60,7 +60,7 @@ namespace Draven.ServerModels
 
         private void _rtmpClient_MessageReceived(object sender, MessageReceivedEventArgs e)
         {
-            Console.WriteLine("[" + _session.Summary.Username + "] [Recieved]");
+            Console.WriteLine("[" + _session.Summary.Username + "] [Receveid]");
         }
 
         private void _rtmpClient_CallbackException(object sender, Exception e)

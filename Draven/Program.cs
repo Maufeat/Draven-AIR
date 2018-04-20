@@ -22,7 +22,7 @@ namespace Draven
     using Draven.Certificate;
     using Draven.Structures.Platform.Client;
 
-    class Program
+    public static class Program
     {
         //Console
         private static string Header1 = "Draven v0.0.1 - Based on Poro from Snowl";
@@ -75,7 +75,7 @@ namespace Draven
             //Remove last certificate in case it wasn't deleted on close
             foreach (var cert in certificateStore.Certificates)
             {
-                if (cert.IssuerName.Name == string.Format("CN={0}", RTMPSHost))
+                if (cert.IssuerName.Name == $"CN={RTMPSHost}")
                 {
                     certificateStore.Remove(cert);
                 }
@@ -95,7 +95,7 @@ namespace Draven
 
             //Create the RTMPS server with the context and certificate
             _server = new RtmpServer(new IPEndPoint(IPAddress.Parse(RTMPSHost), RTMPSPort), _context, _rtmpsCert);
-            _server.ClientCommandReceieved += ClientCommandReceieved;
+            _server.ClientCommandReceived += ClientCommandReceieved;
             _server.ClientMessageReceived += ClientMessageReceived;
 
             //Set up the handler
