@@ -20,6 +20,7 @@ using System.Threading.Tasks;
 namespace Draven
 {
     using Draven.Certificate;
+    using Draven.Helpers;
     using Draven.Structures.Platform.Client;
 
     public static class Program
@@ -49,6 +50,18 @@ namespace Draven
         public static int RTMPSPort = 2099;
         public static string LeagueDrive = "C:/";
         public static string[] AuthLocations = new string[] { "http://127.0.0.1:8080/" };
+
+        /// <summary>
+        /// List of services to register in the handlers
+        /// </summary>
+        private static readonly List <string> Services = new List <string>
+        {
+            "LoginService", "MatchmakerService", "ClientFacadeService", "InventoryService", "MasteryBookService",
+            "SummonerRuneService",
+            "PlayerPreferencesService","LcdsGameInvitationService","LeaguesServiceProxy",
+            "SummonerIconService","LcdsServiceProxy","SummonerService","LcdsRerollService","SummonerTeamService","PlayerStatsService"
+        };
+
 
         static void Main(string[] args)
         {
@@ -83,9 +96,17 @@ namespace Draven
 
             //Generate new certificate for this run and add it to the store.
             var _rtmpsCert = CertGen.CreateSelfSignedCertificate(RTMPSHost);
-            certificateStore.Add(_rtmpsCert);
-            certificateStore.Close();
-            /**/
+            try
+            {
+                certificateStore.Add(_rtmpsCert);
+                certificateStore.Close();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw new Exception("Faile to create and store the SelfSigned cert to the store.");
+            }
+            
             //Generate the SerializationContext
             _context = new SerializationContext();
             var structures = Assembly.GetExecutingAssembly().GetTypes().Where(x => String.Equals(x.Namespace, "Draven.Structures", StringComparison.Ordinal));
@@ -100,21 +121,20 @@ namespace Draven
 
             //Set up the handler
             _handler = new MessageHandler();
-            _handler.Register("LoginService");
-            _handler.Register("MatchmakerService");
-            _handler.Register("ClientFacadeService");
-            _handler.Register("InventoryService");
-            _handler.Register("MasteryBookService");
-            _handler.Register("SummonerRuneService");
-            _handler.Register("PlayerPreferencesService");
-            _handler.Register("LcdsGameInvitationService");
-            _handler.Register("LeaguesServiceProxy");
-            _handler.Register("SummonerIconService");
-            _handler.Register("LcdsServiceProxy");
-            _handler.Register("SummonerService");
-            _handler.Register("LcdsRerollService");
-            _handler.Register("SummonerTeamService");
-            _handler.Register("PlayerStatsService");
+            foreach (var service in Services)
+            {
+                try
+                {
+                    _handler.Register(service);
+                }
+                catch (Exception e)
+                {
+                    $"Failed to register`{service}".PrintError();
+                    e.ToString().PrintError();
+                }
+
+                $"Successfully registered ({service}) to handler".PrintSuccess();
+            }
 
             //Set up the property redirector
             _redirector = new PropertyRedirector();

@@ -50,6 +50,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Mono.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\packages\Mono.Security.3.2.3.0\lib\net45\Mono.Security.dll</HintPath>
@@ -84,6 +87,7 @@
     <Compile Include="AuthServer\AuthServer.cs" />
     <Compile Include="Certificate\CertGen.cs" />
     <Compile Include="DatabaseManager\DatabaseManager.cs" />
+    <Compile Include="Helpers\ConsoleHelper.cs" />
     <Compile Include="Messages\ClientFacadeService\GetLoginDataPacketForUser.cs" />
     <Compile Include="Messages\IMessage.cs" />
     <Compile Include="Messages\InventoryService\GetAvailableChampions.cs" />
@@ -190,6 +194,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
