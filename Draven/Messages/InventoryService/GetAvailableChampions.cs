@@ -27,16 +27,16 @@ namespace Draven.Messages.InventoryService
                     Owned = true,
                     ChampionID = champ.ID,
                     Active = true,
-                    BotEnabled = true,
+                    BotEnabled = false,
                     Banned = false,
-                    Chromas = null,
+                    Chromas = "",
                     Description = "",
                     DisplayName = "",
                     ChampionData = null,
                     FreeToPlayReward = true,
                     OwnedByYourTeam = true,
                     OwnedByEnemyTeam = true,
-                    DefaultSkin = null,
+                    DefaultSkin = "",
                     FreeToPlay = true,
                 };
 
@@ -59,6 +59,8 @@ namespace Draven.Messages.InventoryService
 
                 champions.Add(champDTO);
             }
+
+            //champions.Add(new Dictionary<string, int>());
 
             e.ReturnRequired = true;
             e.Data = champions;

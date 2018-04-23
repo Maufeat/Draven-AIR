@@ -19,7 +19,7 @@
         public String Type { get; set; }
         [JsonProperty("displayCategories")]
         [SerializedName("displayCategories")]
-        public List<string> DisplayCategories { get; set; }
+        public string DisplayCategories { get; set; }
         [JsonProperty("slots")]
         [SerializedName("slots")]
         public List<RecipeSlotDTO> Slots { get; set; }

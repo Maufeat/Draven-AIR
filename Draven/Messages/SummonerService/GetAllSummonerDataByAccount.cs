@@ -1,105 +1,91 @@
-﻿using Draven.ServerModels;
-using Draven.Structures;
-
-using RtmpSharp.IO.AMF3;
-using RtmpSharp.Messaging;
+﻿using RtmpSharp.IO;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Draven.Messages.SummonerService
+namespace RtmpSharp.Net
 {
-    using Draven.Structures.Platform.Summoner;
-
-    class GetAllSummonerDataByAccount : IMessage
+    struct RtmpHandshake
     {
-        public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)
+        const int HandshakeRandomSize = 1528;
+        const int HandshakeSize = 4 + 4 + HandshakeRandomSize;
+
+        // C0/S0 only
+        public byte Version;
+
+        // C1/S1/C2/S2
+        public uint Time;
+        // in C1/S1, MUST be zero. in C2/S2, time at which C1/S1 was read.
+        public uint Time2;
+        public byte[] Random;
+
+        public RtmpHandshake Clone()
         {
-            object[] body = e.Body as object[];
-            SummonerClient summonerSender = sender as SummonerClient;
-            int creds = Convert.ToInt32(body[0]);
-
-            AllSummonerData allSD = new AllSummonerData()
+            return new RtmpHandshake()
             {
-                SpellBook = new SpellBookDTO()
-                {
-                    BookPages = new ArrayCollection
-                                {
-                                    new SpellBookPageDTO
-                                    {
-                                        Current = true,
-                                        SummonerId = summonerSender._sumId,
-                                        PageId = 2.0,
-                                        CreateDate = DateTime.Now,
-                                        Name = "Rune Page 1",
-                                        SlotEntries = new ArrayCollection()
-                                    },
-                                    new SpellBookPageDTO
-                                    {
-                                        Current = false,
-                                        SummonerId = summonerSender._sumId,
-                                        PageId = 3.0,
-                                        CreateDate = DateTime.Now,
-                                        Name = "Rune Page 2",
-                                        SlotEntries = new ArrayCollection()
-                                    }
-                                },
-                    DateString = "Tue Dec 02 03:23:04 UTC 2014",
-                    SummonerId = summonerSender._sumId
-                },
-                SummonerDefaultSpells = new SummonerDefaultSpells()
-                {
-                    SummonerDefaultSpellsJson = "",
-                    SummonerDefaultSpellMap = "",
-                    SummonerId = summonerSender._sumId
-                },
-                SummonerTalentsAndPoints = new SummonerTalentsAndPoints()
-                {
-                    TalentPoints = 30,
-                    ModifyDate = new DateTime(2016, 08, 11, 12, 00, 00),
-                    CreateDate = new DateTime(2016, 08, 11, 12, 00, 00),
-                    SummonerId = summonerSender._sumId
-                },
-                Summoner = new Summoner()
-                {
-                    InternalName = summonerSender._session.Summary.InternalName,
-                    PreviousSeasonHighestTier = "CHALLENGER",
-                    PreviousSeasonHighestTeamReward = 5,
-                    AcctId = summonerSender._accId,
-                    HelpFlag = false,
-                    SumId = summonerSender._sumId,
-                    ProfileIconId = Convert.ToInt32(summonerSender._sumIcon),
-                    DisplayEloQuestionaire = false,
-                    LastGameDate = new DateTime(2016, 08, 11, 12, 00, 00),
-                    RevisionDate = new DateTime(2016, 08, 11, 12, 00, 00),
-                    AdvancedTutorialFlag = false,
-                    RevisionId = 1,
-                    Name = summonerSender._session.Summary.SummonerName,
-                    NameChangeFlag = false,
-                    TutorialFlag = false,
-                },
-                SummonerLevel = new SummonerLevel
-                {
-                    ExpTierMod = 1.0,
-                    SummonerTier = 5.0,
-                    InfTierMod = 1.0,
-                    ExpToNextLevel = 32651,
-                    Level = 30.0
-                },
-                SummonerLevelAndPoints = new SummonerLevelAndPoints
-                {
-                    InfPoints = 0,
-                    ExpPoints = 32651,
-                    SummonerId = summonerSender._sumId,
-                    SummonerLevel = 30
-                }
+                Version = Version,
+                Time = Time,
+                Time2 = Time2,
+                Random = Random
             };
+        }
 
-            e.ReturnRequired = true;
-            e.Data = allSD;
-            return e;
+        public static async Task<RtmpHandshake> ReadAsync(Stream stream, bool readVersion)
+        {
+            var size = HandshakeSize + (readVersion ? 1 : 0);
+            var buffer = await StreamHelper.ReadBytesAsync(stream, size);
+
+            using (var reader = new AmfReader(new MemoryStream(buffer), null))
+            {
+                return new RtmpHandshake()
+                {
+                    Version = readVersion ? reader.ReadByte() : default(byte),
+                    Time = reader.ReadUInt32(),
+                    Time2 = reader.ReadUInt32(),
+                    Random = reader.ReadBytes(HandshakeRandomSize)
+                };
+            }
+        }
+
+        public static Task WriteAsync(Stream stream, RtmpHandshake h, bool writeVersion)
+        {
+            using (var memoryStream = new MemoryStream())
+            using (var writer = new AmfWriter(memoryStream, null))
+            {
+                if (writeVersion)
+                    writer.WriteByte(h.Version);
+
+                writer.WriteUInt32(h.Time);
+                writer.WriteUInt32(h.Time2);
+                writer.WriteBytes(h.Random);
+
+                var buffer = memoryStream.ToArray();
+                return stream.WriteAsync(buffer, 0, buffer.Length);
+            }
+        }
+
+        public static Task WriteAsync(Stream stream, RtmpHandshake h, RtmpHandshake h2, bool writeVersion)
+        {
+            using (var memoryStream = new MemoryStream())
+            using (var writer = new AmfWriter(memoryStream, null))
+            {
+                if (writeVersion)
+                    writer.WriteByte(h.Version);
+
+                writer.WriteUInt32(h.Time);
+                writer.WriteUInt32(h.Time2);
+                writer.WriteBytes(h.Random);
+
+                writer.WriteUInt32(h2.Time);
+                writer.WriteUInt32(h2.Time2);
+                writer.WriteBytes(h2.Random);
+
+                var buffer = memoryStream.ToArray();
+                return stream.WriteAsync(buffer, 0, buffer.Length);
+            }
         }
     }
 }

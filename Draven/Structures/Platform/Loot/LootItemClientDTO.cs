@@ -22,7 +22,7 @@
         public String Tags { get; set; }
         [JsonProperty("displayCategories")]
         [SerializedName("displayCategories")]
-        public List<string> DisplayCategories { get; set; }
+        public string DisplayCategories { get; set; }
         [JsonProperty("rarity")]
         [SerializedName("rarity")]
         public String Rarity { get; set; }

@@ -3,6 +3,7 @@
     using System;
 
     using RtmpSharp.IO;
+    using RtmpSharp.IO.AMF3;
 
     [Serializable]
     [SerializedName("com.riotgames.platform.summoner.SummonerDefaultSpells")]
@@ -11,8 +12,8 @@
         [SerializedName("summonerId")]
         public Double SummonerId { get; set; }
         [SerializedName("spellDefault1")]
-        public object SummonerDefaultSpellsJson { get; set; }
+        public ArrayCollection SpellDefault1 { get; set; }
         [SerializedName("spellDefault2")]
-        public object SummonerDefaultSpellMap { get; set; }
+        public ArrayCollection SpellDefault2 { get; set; }
     }
 }

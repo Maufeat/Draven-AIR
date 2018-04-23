@@ -1,7 +1,7 @@
 ﻿namespace Draven.Structures.Platform.Loot
 {
     using System;
-
+    using System.Collections.Generic;
     using Newtonsoft.Json;
 
     using RtmpSharp.IO;
@@ -12,7 +12,7 @@
     {
         [JsonProperty("queryToLootNames")]
         [SerializedName("queryToLootNames")]
-        public object QueryToLootNames{ get; set; }
+        public Dictionary<string, List<string>> QueryToLootNames { get; set; }
         [JsonProperty("lastUpdate")]
         [SerializedName("lastUpdate")]
         public Double LastUpdate { get; set; }

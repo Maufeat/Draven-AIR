@@ -16,5 +16,11 @@
         [JsonProperty("quantityExpression")]
         [SerializedName("quantityExpression")]
         public String QuantityExpression { get; set; }
+        [JsonProperty("probability")]
+        [SerializedName("probability")]
+        public Double Probability { get; set; }
+        [JsonProperty("allowDuplicates")]
+        [SerializedName("allowDuplicates")]
+        public Boolean AllowDuplicates { get; set; }
     }
 }

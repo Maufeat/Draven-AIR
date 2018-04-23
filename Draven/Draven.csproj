@@ -93,6 +93,7 @@
     <Compile Include="DatabaseManager\Database Structures\ProfileIconTree.cs" />
     <Compile Include="DatabaseManager\Database Structures\ProfileJsonTree.cs" />
     <Compile Include="Helpers\ConsoleHelper.cs" />
+    <Compile Include="Messages\ClientFacadeService\CallKudos.cs" />
     <Compile Include="Messages\ClientFacadeService\GetLoginDataPacketForUser.cs" />
     <Compile Include="Messages\IMessage.cs" />
     <Compile Include="Messages\InventoryService\GetAvailableChampions.cs" />
@@ -166,6 +167,7 @@
     <Compile Include="Structures\Platform\Statistics\ChampionStatInfo.cs" />
     <Compile Include="Structures\Platform\Statistics\PlayerChampionStats.cs" />
     <Compile Include="Structures\Platform\Statistics\PlayerLifetimeStats.cs" />
+    <Compile Include="Structures\Platform\Statistics\PlayerGameStats.cs" />
     <Compile Include="Structures\Platform\Statistics\PlayerStats.cs" />
     <Compile Include="Structures\Platform\Statistics\PlayerStatSummaries.cs" />
     <Compile Include="Structures\Platform\Statistics\PlayerStatSummary.cs" />

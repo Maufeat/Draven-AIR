@@ -43,19 +43,19 @@
 
         public static void InitMasteryAndRuneTree()
         {
-            Dictionary<string, int> _masterySort = new Dictionary<string, int> { { "Offense", 1 }, { "Defense", 2 }, { "Utility", 3 } };
+            Dictionary<string, int> _masterySort = new Dictionary<string, int> { { "Ferocity", 1 }, { "Cunning", 2 }, { "Resolve", 3 } };
 
             Console.WriteLine("[LOG] Initialize Mastery and Rune Tree");
             using (WebClient client = new WebClient())
             {
                 //Download the latest mastery daata
-                string MasteryData = client.DownloadString("http://ddragon.leagueoflegends.com/cdn/7.12.1/data/en_US/mastery.json");
+                string MasteryData = client.DownloadString("http://ddragon.leagueoflegends.com/cdn/7.11.1/data/en_US/mastery.json");
                 
                 Masteries mData = JsonConvert.DeserializeObject<Masteries>(MasteryData);
                 TalentTree = new ArrayCollection();
 
                 //Parse the data and convert it into a type that is sent in the LoginDataPacket
-                foreach (KeyValuePair<string, List<List<MasteryLite>>> mastery in mData.tree)
+                foreach (var mastery in mData.tree)
                 {
                     TalentGroup group = new TalentGroup
                     {

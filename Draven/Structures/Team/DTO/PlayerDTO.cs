@@ -11,15 +11,11 @@
     {
         [SerializedName("playerId")]
         public Int64 PlayerId { get; set; }
-
-        [SerializedName("teamsSummary")]
-        public ArrayCollection TeamsSummary { get; set; }
-
-        [SerializedName("createdTeams")]
-        public ArrayCollection CreatedTeams { get; set; }
-
         [SerializedName("playerTeams")]
         public ArrayCollection PlayerTeams { get; set; }
-
+        [SerializedName("createdTeams")]
+        public ArrayCollection CreatedTeams { get; set; }
+        [SerializedName("teamsSummary")]
+        public ArrayCollection TeamsSummary { get; set; }
     }
 }

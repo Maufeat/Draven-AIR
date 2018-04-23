@@ -9,13 +9,9 @@
     [SerializedName("com.riotgames.platform.statistics.PlayerStats")]
     class PlayerStats
     {
-        [SerializedName("timeTrackedStats")]
-        public ArrayCollection TimeTrackedStats { get; set; }
         [SerializedName("promoGamesPlayed")]
         public Int32 PromoGamesPlayed { get; set; }
-        [SerializedName("promoGamesPlayedLastUpdate")]
+        [SerializedName("promoGamesPlayedLastUpdated")]
         public object PromoGamesPlayedLastUpdate { get; set; }
-        [SerializedName("lifetimeGamesPlayed")]
-        public object LifetimeGamesPlayed { get; set; }
     }
 }

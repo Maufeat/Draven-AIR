@@ -9,7 +9,7 @@
     [SerializedName("com.riotgames.platform.summoner.spellbook.SpellBookPageDTO")]
     public class SpellBookPageDTO
     {
-        [SerializedName("slotEntries")]
+        [SerializedName("entries")]
         public ArrayCollection SlotEntries { get; set; }
         [SerializedName("summonerId")]
         public Double SummonerId { get; set; }

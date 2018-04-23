@@ -9,13 +9,11 @@
     [SerializedName("com.riotgames.platform.summoner.masterybook.MasteryBookDTO")]
     public class MasteryBookDTO
     {
-        [SerializedName("bookPagesJson")]
-        public object BookPagesJson { get; set; }
-        [SerializedName("bookPages")]
-        public ArrayCollection BookPages { get; set; }
-        [SerializedName("dateString")]
-        public String DateString { get; set; }
         [SerializedName("summonerId")]
         public Double SummonerId { get; set; }
+        [SerializedName("dateString")]
+        public String DateString { get; set; }
+        [SerializedName("bookPages")]
+        public ArrayCollection BookPages { get; set; }
     }
 }
