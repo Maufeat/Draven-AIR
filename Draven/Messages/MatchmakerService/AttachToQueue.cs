@@ -10,50 +10,26 @@ namespace Draven.Messages.MatchmakerService
 {
     using Draven.Structures.Platform.Login.Matchmaking;
     using Draven.Structures.Platform.Matchmaking;
+    using Newtonsoft.Json;
 
     class AttachToQueue: IMessage
     {
-        private string ObjectToXml(object output)
-        {
-            string objectAsXmlString;
-
-            System.Xml.Serialization.XmlSerializer xs = new System.Xml.Serialization.XmlSerializer(output.GetType());
-            using (System.IO.StringWriter sw = new System.IO.StringWriter())
-            {
-                try
-                {
-                    xs.Serialize(sw, output);
-                    objectAsXmlString = sw.ToString();
-                }
-                catch (Exception ex)
-                {
-                    objectAsXmlString = ex.ToString();
-                }
-            }
-
-            return objectAsXmlString;
-        }
-
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)
         {
-            MatchMakerParams mmp = e.Body as MatchMakerParams;
+            Console.WriteLine(JsonConvert.SerializeObject(e.Body));
 
-            foreach(var x in mmp.QueueIds)
-            {
-                Console.WriteLine(x);
-            }
-            
             SearchingForMatchNotification notification = new SearchingForMatchNotification
             {
-                JoinedQueues = new ArrayCollection
+                PlayerJoinFailures = new ArrayCollection
                 {
-                    new QueueInfo
+                    new QueueDisabled
                     {
-                        WaitTime = 5000,
-                        QueueID = 65,
-                        QueueLength = 5000
+                        Message = "QUEUE_DISABLED",
+                        QueueId = 1
                     }
-                }
+                },
+                GhostGameSummoners = new ArrayCollection(),
+                JoinedQueues = new ArrayCollection()
             };
 
             e.ReturnRequired = true;

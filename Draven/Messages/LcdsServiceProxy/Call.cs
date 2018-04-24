@@ -20,17 +20,253 @@ namespace Draven.Messages.LcdsServiceProxy
 
     class Call : IMessage
     {
+        public class TBDGroupData 
+        {
+            [JsonProperty("counter")]
+            public int Counter { get; set; }
+
+            [JsonProperty("phaseName")]
+            public string PhaseName { get; set; }
+
+            [JsonProperty("premadeState")]
+            public TBDPhase Phase { get; set; }
+
+            [JsonProperty("championSelectState")]
+            public TBDChampSelectState ChampSelectState { get; set; }
+
+            [JsonProperty("matchmakingState")]
+            public object MatchmakingState { get; set; }
+
+            [JsonProperty("afkCheckState")]
+            public object AFKCheckState { get; set; }
+        }
+
+
+        public class TBDChampSelectState 
+        {
+            [JsonProperty("teamId")]
+            public Guid TeamId { get; set; }
+
+            [JsonProperty("teamChatRoomId")]
+            public Guid TeamChatRoomId { get; set; }
+
+            [JsonProperty("subphase")]
+            public string Subphase { get; set; }
+
+            [JsonProperty("actionSetList")]
+            public List<TBDChampSelectAction> Actions { get; set; }
+
+            [JsonProperty("currentActionSetIndex")]
+            public int CurrentActionIndex { get; set; }
+
+            [JsonProperty("cells")]
+            public TBDCells Cells { get; set; }
+
+            [JsonProperty("localPlayerCell")]
+            public int MyCellId { get; set; }
+
+            [JsonProperty("bans")]
+            public TBDBans Bans { get; set; }
+
+            [JsonProperty("currentTotalTimeMillis")]
+            public int CurrentTotalMillis { get; set; }
+
+            [JsonProperty("currentTimeRemainingMillis")]
+            public int CurrentRemainingMillis { get; set; }
+        }
+
+        public class TBDBans 
+        {
+            [JsonProperty("alliedBans")]
+            public List<int> AlliedBans { get; set; }
+
+            [JsonProperty("enemyBans")]
+            public List<int> EnemyBans { get; set; }
+        }
+
+        public class TBDCells 
+        {
+            [JsonProperty("alliedTeam")]
+            public TBDCell[] AlliedTeam { get; set; }
+
+            [JsonProperty("enemyTeam")]
+            public TBDCell[] EnemyTeam { get; set; }
+        }
+
+        public class TBDCell 
+        {
+            [JsonProperty("teamId")]
+            public int TeamId { get; set; }
+
+            [JsonProperty("cellId")]
+            public int CellId { get; set; }
+
+            [JsonProperty("summonerName")]
+            public string Name { get; set; }
+
+            [JsonProperty("championPickIntent")]
+            public int ChampionPickIntent { get; set; }
+
+            [JsonProperty("championId")]
+            public int ChampionId { get; set; }
+
+            [JsonProperty("assignedPosition")]
+            public string AssignedPosition { get; set; }
+
+            [JsonProperty("spell1Id")]
+            public int Spell1Id { get; set; }
+
+            [JsonProperty("spell2Id")]
+            public int Spell2Id { get; set; }
+        }
+
+        public class TBDChampSelectAction 
+        {
+            [JsonProperty("actionId")]
+            public int ActionId { get; set; }
+
+            [JsonProperty("actorCellId")]
+            public int ActorCellId { get; set; }
+
+            [JsonProperty("type")]
+            public string Type { get; set; }
+
+            [JsonProperty("championId")]
+            public int ChampionId { get; set; }
+
+            [JsonProperty("completed")]
+            public bool Completed { get; set; }
+        }
+
+        public class TBDPhase 
+        {
+            [JsonProperty("timer")]
+            public int Timer { get; set; }
+
+            [JsonProperty("draftPremadeId")]
+            public Guid PremadeID { get; set; }
+
+            [JsonProperty("premadeChatRoomId")]
+            public string ChatRoomID { get; set; }
+
+            [JsonProperty("captainSlotId")]
+            public int CaptainSlot { get; set; }
+
+            [JsonProperty("readyToMatchmake")]
+            public bool ReadyToQueue { get; set; }
+
+            [JsonProperty("draftSlots")]
+            public List<TBDSlotData> Slots { get; set; }
+
+            [JsonProperty("playableDraftPositions")]
+            public List<string> PlayablePositions { get; set; }
+
+            [JsonProperty("localPlayerSlotId")]
+            public int MySlot { get; set; }
+
+            [JsonProperty("readyState")]
+            public object ReadyState { get; set; }
+
+            [JsonProperty("isAutoFillEligible")]
+            public bool IsAutoFillEligible { get; set; }
+
+            [JsonProperty("showPositionExcluder")]
+            public bool ShowPositionExcluder { get; set; }
+        }
+
+        public class TBDSlotData
+        {
+            [JsonProperty("slotId")]
+            public int SlotId { get; set; }
+
+            [JsonProperty("summonerName")]
+            public string SummonerName { get; set; }
+
+            [JsonProperty("draftPositionPreferences")]
+            public List<string> Positions { get; set; }
+        }
+
         public RemotingMessageReceivedEventArgs HandleMessage(object sender, RemotingMessageReceivedEventArgs e)
         {
-            //Console.WriteLine(JsonConvert.SerializeObject(e.Body));
             List<string> body = JsonConvert.DeserializeObject<List<string>>(JsonConvert.SerializeObject(e.Body));
             SummonerClient summonerSender = sender as SummonerClient;
 
             string payloader = "";
             bool compressed = false;
 
+            Console.WriteLine(JsonConvert.SerializeObject(e.Body));
             switch (body[2])
             {
+                case "createDraftPremadeV1":
+                    var groupData = new TBDGroupData
+                    {
+                        Counter = -1,
+                        PhaseName = "DRAFT_PREMADE",
+                        Phase = new TBDPhase
+                        {
+                            CaptainSlot = 1,
+                            ChatRoomID = "",
+                            MySlot = 1,
+                            PremadeID = new Guid(),
+                            PlayablePositions = new List<string>
+                            {
+                                "BOTTOM",
+                                "UTILITY",
+                                "FILL",
+                                "JUNGLE",
+                                "TOP",
+                                "MIDDLE"
+                            },
+                            ReadyState = new Dictionary<string, object>
+                            {
+                                {
+                                    "readyToMatchmake",
+                                    true
+                                },
+                                {
+                                    "premadeSizeAllowed",
+                                    true
+                                },
+                                {
+                                    "requiredPositionCoverageMet",
+                                    true
+                                },
+                                {
+                                    "allowablePremadeSizes",
+                                    new List<int>
+                                    {
+                                        5
+                                    }
+                                },
+                            },
+                            ReadyToQueue = true,
+                            IsAutoFillEligible = true,
+                            ShowPositionExcluder = false,
+                            Slots = new List<TBDSlotData>
+                            {
+                                new TBDSlotData
+                                {
+                                    SlotId = 1,
+                                    SummonerName = "Maufeat",
+                                    Positions = new List<string>
+                                    {
+                                        "UNSELECTED",
+                                        "UNSELECTED",
+                                    }
+                                }
+                            },
+                        }
+                    };
+                    payloader = JsonConvert.SerializeObject(groupData);
+                    Console.WriteLine(payloader);
+                    break;
+                case "retrieveOnlineFriendsOfFriends":
+                    payloader = "[]";
+                    break;
+                case "quitV2":
+                case "retrieveFeatureToggles":
+                    payloader = "{}";
+                    break;
                 case "getAllPlayerLoot":
                     var allPlayerLoot = new List<PlayerLootDTO>
                     {
@@ -60,8 +296,7 @@ namespace Draven.Messages.LcdsServiceProxy
                                 count = 99999,
                             }
                     };
-                    //payloader = JsonConvert.SerializeObject(allPlayerLoot);
-                    Console.WriteLine(payloader);
+                    payloader = JsonConvert.SerializeObject(allPlayerLoot);
                     break;
                 case "getAllQueries":
                     var allQueries = new QueryResultDTO
@@ -393,8 +628,7 @@ namespace Draven.Messages.LcdsServiceProxy
 
             if (payloader != "")
                 summonerSender._rtmpClient.InvokeDestReceive("cn-" + summonerSender._accId, "cn-" + summonerSender._accId, "messagingDestination", lspr);
-            else
-                Console.WriteLine("Empty payloader for: " + lspr.ServiceName + " : " + lspr.MethodName + "");
+                Console.WriteLine("Payloader for: " + lspr.ServiceName + " : " + lspr.MethodName + " (" + body[3] + ")");
 
             e.ReturnRequired = true;
             e.Data = null;

@@ -49,7 +49,7 @@
             using (WebClient client = new WebClient())
             {
                 //Download the latest mastery daata
-                string MasteryData = client.DownloadString("http://ddragon.leagueoflegends.com/cdn/7.11.1/data/en_US/mastery.json");
+                string MasteryData = client.DownloadString("http://ddragon.leagueoflegends.com/cdn/6.24.1/data/en_US/mastery.json");
                 
                 Masteries mData = JsonConvert.DeserializeObject<Masteries>(MasteryData);
                 TalentTree = new ArrayCollection();

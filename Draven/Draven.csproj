@@ -133,6 +133,9 @@
     <Compile Include="Structures\Leagues\Client\DTO\SummonerLeaguesDTO.cs" />
     <Compile Include="Structures\Leagues\Pojo\LeagueItemDTO.cs" />
     <Compile Include="Structures\Leagues\Pojo\LeagueListDTO.cs" />
+    <Compile Include="Structures\Platform\GameInvite\InvitationMetadata.cs" />
+    <Compile Include="Structures\Platform\GameInvite\InvitationPlayer.cs" />
+    <Compile Include="Structures\Platform\GameInvite\LobbyStatus.cs" />
     <Compile Include="Structures\Platform\Loot\QueryResultDTO.cs" />
     <Compile Include="Structures\Platform\Loot\LootItemClientDTO.cs" />
     <Compile Include="Structures\Platform\Loot\PlayerLootDefinitionsDTO.cs" />
@@ -225,7 +228,9 @@
       <Name>rtmp-sharp</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Messages\LcdsGameInvitationService\CreateGroupFinderLobby.cs" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

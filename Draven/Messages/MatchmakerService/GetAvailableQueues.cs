@@ -20,7 +20,7 @@ namespace Draven.Messages.MatchmakerService
                     MinimumParticipantListSize = 1,
                     MaxLevel = 100,
                     ThresholdEnabled = false,
-                    GameTypeConfigId = 1,
+                    GameTypeConfigId = 18,
                     MinLevel = 3,
                     QueueState = "ON",
                     Type = "NORMAL",
